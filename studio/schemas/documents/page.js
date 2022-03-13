@@ -1,9 +1,9 @@
-import {format, parseISO} from 'date-fns'
+import { format, parseISO } from 'date-fns'
 
 export default {
-  name: 'post',
+  name: 'page',
   type: 'document',
-  title: 'Blog Post',
+  title: 'Page',
   fields: [
     {
       name: 'title',
@@ -105,13 +105,14 @@ export default {
       slug: 'slug',
       media: 'mainImage'
     },
-    prepare ({title = 'No title', publishedAt, slug = {}, media}) {
-      const dateSegment = format(parseISO(publishedAt), 'yyyy/MM')
+    prepare({ title = 'No title', publishedAt, slug = {}, media }) {
+      let dateSegment;
+      if (publishedAt) dateSegment = format(parseISO(publishedAt), 'yyyy/MM')
       const path = `/${dateSegment}/${slug.current}/`
       return {
         title,
         media,
-        subtitle: publishedAt ? path : 'Missing publishing date'
+        subtitle: publishedAt ? path : 'Not yet published'
       }
     }
   }

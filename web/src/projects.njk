@@ -1,0 +1,13 @@
+---
+layout: base.njk
+navtitle: Projects
+permalink: /projects/
+tags:
+  - nav
+order: 2
+---
+
+<h1>Projects</h1>
+
+{% set projectslist = collections.myProjects %}
+{% include "projectslist.njk" %}

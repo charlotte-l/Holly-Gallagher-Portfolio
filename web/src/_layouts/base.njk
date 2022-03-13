@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ renderData.title or title or metadata.title }}</title>
+
+    <link rel="preload" as="font" type="font/woff2" href="{{ site.url }}/styles/fonts/FrenteH1-Regular-subset.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/ttf" href="{{ site.url }}/styles/fonts/OpenSans-Variable.ttf" crossorigin>
+
+    <meta name="title" content="{{ renderData.title or title or metadata.title }}">
+    <meta name="Description" content="{{ renderData.description or description or metadata.description }}">
+    <meta
+    name="robots" content="follow, index"/> <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ page.url | url }}">
+    <meta property="og:title" content="{{ metaTitle | safe }}">
+    <meta property="og:description" content="{{ metaDescription | safe }}">
+    {%- if featuredImg %}
+      <meta property="og:image" content="{{ site.url }}/images/{{ featuredImg }}.png">
+    {%- else -%}
+      <meta property="og:image" content="{{ site.url }}/images/index.png">
+    {%- endif %}
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ page.url | url }}">
+    <meta property="twitter:title" content="{{ metaTitle | safe }}">
+    <meta property="twitter:description" content="{{ metaDescription | safe }}">
+    {%- if featuredImg %}
+      <meta property="twitter:image" content="{{ site.url }}/images/{{ featuredImg }}.png">
+    {%- else -%}
+      <meta property="twitter:image" content="{{ site.url }}/images/index.png">
+    {%- endif %}
+    <link rel="canonical" href="{{ page.url | url }}"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+    <link rel="icon" href="../images/favicon.svg" type="image/svg+xml">
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+    <link rel="mask-icon" href="../images/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#603cba">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+      @font-face {
+        font-family: 'Frente H1';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: local('Frente H1'), url('/styles/fonts/FrenteH1-Regular-subset.woff2') format('woff2');
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      @font-face {
+        font-family: 'Open Sans';
+        font-style: normal;
+        font-weight: 1 999;
+        font-display: swap;
+        src: local('Open Sans'), url('/styles/fonts/OpenSans-Variable.ttf') format('truetype');
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="/styles/main.css"/>
+  </head>
+  <body
+    class="h-full text-white antialiased bg-brand-primary bg-no-repeat bg-top bg-contain">
+    <!-- skip to content -->
+    <a href="#content" class="w-full block text-center bg-gray-100 sr-only focus:not-sr-only">
+      Skip to Content
+    </a>
+    {% block header %}
+      {% include "../_includes/header.njk" %}
+    {% endblock %}
+    <main {% if templateClass %} class="{{ templateClass }}" {% endif %} role="main">
+      {{ content | safe }}
+    </main>
+    {% block footer %}
+      {% include "../_includes/footer.njk" %}
+    {% endblock %}
+
+    {% set lazyLoadScript %}
+      {% include "scripts/lazyLoad.js" %}
+    {% endset %}
+    <script>
+      {{ lazyLoadScript | jsmin | safe }}
+    </script>
+  </body>
+</html>

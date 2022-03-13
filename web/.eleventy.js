@@ -1,60 +1,52 @@
 const { DateTime } = require("luxon");
-const util = require('util')
-const CleanCSS = require("clean-css");
+const util = require("util");
+const markdownIt = require("markdown-it");
+const markdownItAnchor = require("markdown-it-anchor");
+const pluginCSS = require("eleventy-postcss-extension");
+const filters = require("./src/utils/filters");
+const shortcodes = require("./src/utils/shortcodes");
 
-module.exports = function(eleventyConfig) {
+module.exports = function (eleventyConfig) {
+  eleventyConfig.addWatchTarget("./src/styles");
+  eleventyConfig.addPlugin(pluginCSS);
 
-  // https://www.11ty.io/docs/quicktips/inline-css/
-  eleventyConfig.addFilter("cssmin", function(code) {
-    return new CleanCSS({}).minify(code).styles;
+  eleventyConfig.addFilter("debug", function (value) {
+    return util.inspect(value, { compact: false });
   });
 
-  eleventyConfig.addFilter("debug", function(value) {
-    return util.inspect(value, {compact: false})
-   });
+  eleventyConfig.addPassthroughCopy({ "src/fonts": "styles/fonts" });
 
-   eleventyConfig.addFilter("readableDate", dateObj => {
-    return new Date(dateObj).toDateString()
+  eleventyConfig.addFilter("readableDate", (dateObj) => {
+    return new Date(dateObj).toDateString();
   });
 
-  // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
-  eleventyConfig.addFilter('htmlDateString', (dateObj) => {
-    return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-LL-dd');
+  eleventyConfig.addFilter("htmlDateString", (dateObj) => {
+    return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("yyyy-LL-dd");
   });
 
-  let markdownIt = require("markdown-it");
-  let markdownItAnchor = require("markdown-it-anchor");
   let options = {
     html: true,
     breaks: true,
-    linkify: true
+    linkify: true,
   };
   let opts = {
     permalink: true,
     permalinkClass: "direct-link",
-    permalinkSymbol: "#"
+    permalinkSymbol: "#",
   };
 
-  eleventyConfig.setLibrary("md", markdownIt(options)
-    .use(markdownItAnchor, opts)
-  );
+  eleventyConfig.setLibrary("md", markdownIt(options).use(markdownItAnchor, opts));
 
-  eleventyConfig.addFilter("markdownify", function(value) {
-    const md = new markdownIt(options)
-    return md.render(value)
-  })
+  eleventyConfig.addNunjucksAsyncShortcode("image", shortcodes.imageShortcode);
+  eleventyConfig.addNunjucksAsyncFilter("jsmin", filters.jsmin);
+
+  eleventyConfig.addFilter("markdownify", function (value) {
+    const md = new markdownIt(options);
+    return md.render(value);
+  });
   return {
-    templateFormats: [
-      "md",
-      "njk",
-      "html",
-      "liquid"
-    ],
+    templateFormats: ["md", "njk", "html", "liquid"],
 
-    // If your site lives in a different subdirectory, change this.
-    // Leading or trailing slashes are all normalized away, so don’t worry about it.
-    // If you don’t have a subdirectory, use "" or "/" (they do the same thing)
-    // This is only used for URLs (it does not affect your file structure)
     pathPrefix: "/",
 
     markdownTemplateEngine: "liquid",
@@ -62,10 +54,11 @@ module.exports = function(eleventyConfig) {
     dataTemplateEngine: "njk",
     passthroughFileCopy: true,
     dir: {
-      input: ".",
+      input: "src",
       includes: "_includes",
+      layouts: "_layouts",
       data: "_data",
-      output: "_site"
-    }
+      output: "_site",
+    },
   };
-}
+};

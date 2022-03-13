@@ -1,0 +1,9 @@
+---
+layout: base.njk
+templateClass: tmpl-project
+---
+<article>
+  <h1>{{ project.title }}</h1>
+  <p>Written by {% for author in post.authors %}{{author.name}}{% endfor %}  </p>
+  <p><a href="{{ '/' | url }}">← Home</a></p>
+</article>
