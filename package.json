@@ -3,6 +3,7 @@
   "name": "sanity-eleventy-blog",
   "version": "1.0.0",
   "scripts": {
+    "bootstrap": "lerna exec npm install",
     "build": "lerna run build --parallel",
     "dev": "lerna run dev --parallel",
     "format": "lerna run format",
