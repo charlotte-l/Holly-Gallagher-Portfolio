@@ -6,9 +6,17 @@ permalink: /about/
 tags:
   - nav
 order: 1
+templateClass: mb-10
 ---
-<div class="container mx-auto">
-  <h1>About Holly</h1>
-</div>
 
-<p><a href="{{ '/' | url }}">← Home</a></p>
+<div class="container mx-auto px-8">
+  <h1>About Holly</h1>
+  {{authors[0].bio | markdownify | safe }}
+  {{authors[0].image}}
+  <h2>Key Experience</h2>
+  {{authors[0].key_experience | markdownify | safe }}
+  <h2>Training and Support</h2>
+  {{authors[0].training_support | markdownify | safe }}
+  <h2>Courses and Institutions</h2>
+  {{authors[0].courses_institutions | markdownify | safe }}
+</div>

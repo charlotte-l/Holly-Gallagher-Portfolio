@@ -40,16 +40,6 @@ export default {
         'This ends up on summary pages, on Google, when people share your post in social media.'
     },
     {
-      name: 'authors',
-      title: 'Authors',
-      type: 'array',
-      of: [
-        {
-          type: 'authorReference'
-        }
-      ]
-    },
-    {
       name: 'categories',
       type: 'array',
       title: 'Categories',
@@ -106,12 +96,15 @@ export default {
       media: 'mainImage'
     },
     prepare ({title = 'No title', publishedAt, slug = {}, media}) {
-      const dateSegment = format(parseISO(publishedAt), 'yyyy/MM')
-      const path = `/${dateSegment}/${slug.current}/`
+      let path;
+      if (publishedAt) {
+        const dateSegment = format(parseISO(publishedAt), 'yyyy/MM')
+        path = `/${dateSegment}/${slug.current}/`
+      }
       return {
         title,
         media,
-        subtitle: publishedAt ? path : 'Missing publishing date'
+        subtitle: path || 'Missing publishing date'
       }
     }
   }

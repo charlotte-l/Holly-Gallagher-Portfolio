@@ -7,7 +7,6 @@
     font-family: "Open Sans", Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans",
       "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans",
       "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 600;
     line-height: 1.75;
     letter-spacing: 0.05vw;
   }
@@ -61,6 +60,8 @@
 
   h2 {
     font-size: 6.854rem;
+    text-align: right;
+    @apply bar;
   }
 
   h3 {
@@ -80,20 +81,22 @@
     font-size: 0.618rem;
   }
 
-  :where(main, footer) a {
-    @apply text-brand-secondary;
-    background: linear-gradient(
-        0deg,
-        theme("colors.brand-secondary"),
-        theme("colors.brand-secondary")
-      )
-      no-repeat right bottom / 0 100%;
-    transition: color 0.3s ease-in-out, background-size 0.3s ease-in-out;
+  :where(header, main) a {
+    @apply text-brand-secondary relative;
   }
 
-  :where(main, footer) a:where(:hover, :focus-visible) {
-    background-size: 100% 100%;
-    background-position-x: left;
-    color: white;
+  :where(header, main) a::before {
+    @apply content-[""] absolute w-full h-px bg-brand-secondary bottom-0 left-0 origin-right scale-x-0 transition-transform duration-300 ease-in-out;
+  }
+
+  :where(header, main) a:not(.brand):where(:hover, :focus-visible)::before,
+  :where(header) .nav-item-active a::before {
+    @apply origin-left scale-x-100
+  }
+}
+
+@layer components {
+  .index-arch::after {
+    @apply absolute right-0 bottom-0 origin-bottom-right rotate-90 content-["Lorem_ipsum_dolor_sit"] text-brand-secondary text-2xl;
   }
 }

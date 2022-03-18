@@ -1,18 +1,32 @@
 ---
 layout: base.njk
 navtitle: Home
-templateClass: mb-6
+templateClass: mb-10
 ---
 
 <div class="container mx-auto px-8">
     <div class="flex">
         <div class="basis-8/12">
-            <div class="relative">
-                {% image {relativeSrc: "/images/tensile-strength.jpg", imgClassName: "rounded-tl-[50%] rounded-tr-[50%]"} %}
-                <div class="absolute aspect-square bottom-0 left-0 bg-brand-secondary text-black rounded-full">
-                    <span class="absolute">Let's talk</span>
-                    <span class="text-6xl">&#8594;</span>
-                    <span class="absolute">Let's talk</span>
+            <div class="relative w-10/12 mb-6">
+                {% image {relativeSrc: "/images/tensile-strength.jpg", widths: [600, 1200], sizes: "40vw", className: "index-arch relative block", imgClassName: "rounded-tl-[50%] rounded-tr-[50%]"} %}
+                <div class="absolute aspect-square -bottom-6 -left-6 p-12 bg-brand-secondary text-black rounded-full">
+                    <svg viewBox="0 0 100 100" style="width: 90%; height: 90%; top: 5%; left: 5%" class="absolute">
+                        <defs>
+                            <path id="circle"
+                            d="
+                                M 50, 50
+                                m -37, 0
+                                a 37,37 0 1,1 74,0
+                                a 37,37 0 1,1 -74,0"/>
+                        </defs>
+                        <text font-size="14" letter-spacing="2">
+                            <textPath xlink:href="#circle">
+                            Let's talk&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Let's talk
+                            </textPath>
+                        </text>
+                    </svg>
+                    <span class="text-6xl align-super block h-0 leading-[0.75]">&#8594;</span>
+                    <a class="after:absolute after:inset-0" href="/contact/"></a>
                 </div>
             </div>
         </div>

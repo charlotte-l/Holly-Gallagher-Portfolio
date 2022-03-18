@@ -9,7 +9,10 @@ const hasToken = !!client.config().token
 function generateAuthor (author) {
   return {
     ...author,
-    bio: BlocksToMarkdown(author.bio, { serializers, ...client.config() })
+    bio: BlocksToMarkdown(author.bio, { serializers, ...client.config() }),
+    key_experience: BlocksToMarkdown(author.key_experience, { serializers, ...client.config() }),
+    training_support: BlocksToMarkdown(author.training_support, { serializers, ...client.config() }),
+    courses_institutions: serializers.types.table(author.courses_institutions),
   }
 }
 

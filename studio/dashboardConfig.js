@@ -1,21 +1,26 @@
 export default {
   widgets: [
-    {
-      name: 'sanity-tutorials',
-      options: {
-        templateRepoId: 'sanity-io/sanity-template-eleventy-blog'
-      }
-    },
     {name: 'structure-menu'},
     {
+      name: 'document-list',
+      options: {title: 'Blog posts', order: '_createdAt desc', types: ['post']},
+      layout: {width: 'medium'}
+    },
+    {
+      name: 'document-list',
+      options: {title: 'Projects', order: '_createdAt desc', types: ['project']},
+      layout: {width: 'medium'}
+    },
+    {
       name: 'project-info',
+      layout: {width: 'auto'},
       options: {
         __experimental_before: [
           {
             name: 'netlify',
             options: {
               description:
-                'NOTE: Because these sites are static builds, they need to be re-deployed to see the changes when documents are published.',
+                'Please click \'Deploy\' to publish your changes to your live website!',
               sites: [
                 {
                   buildHookId: '61f2845fc5ee77b125d6300c',
@@ -43,11 +48,5 @@ export default {
         ]
       }
     },
-    {name: 'project-users', layout: {height: 'auto'}},
-    {
-      name: 'document-list',
-      options: {title: 'Recent blog posts', order: '_createdAt desc', types: ['post']},
-      layout: {width: 'medium'}
-    }
   ]
 }

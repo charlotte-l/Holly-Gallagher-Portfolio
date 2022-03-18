@@ -7,7 +7,8 @@ tags:
 order: 3
 ---
 
-<h1>News</h1>
+<div class="container mx-auto px-8">
+  <h1>News</h1>
 
-{% set postslist = collections.myPosts %}
-{% include "postslist.njk" %}
+  {% set postslist = collections.myPosts %} {% include "postslist.njk" %}
+</div>

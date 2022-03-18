@@ -12,7 +12,7 @@ export default {
       name: 'slug',
       type: 'slug',
       title: 'Slug',
-      description: 'Some frontends will require a slug to be set to be able to show the person',
+      description: 'This is the page where your profile will be',
       options: {
         source: 'name',
         maxLength: 96
@@ -27,7 +27,22 @@ export default {
       name: 'bio',
       type: 'bioPortableText',
       title: 'Biography'
-    }
+    },
+    {
+      name: 'key_experience',
+      type: 'aboutPortableText',
+      title: 'Key Experience'
+    },
+    {
+      name: 'training_support',
+      type: 'aboutPortableText',
+      title: 'Training and Support'
+    },
+    {
+      name: 'courses_institutions',
+      type: 'table',
+      title: 'Courses and Institutions'
+    },
   ],
   preview: {
     select: {

@@ -5,6 +5,7 @@ const markdownItAnchor = require("markdown-it-anchor");
 const pluginCSS = require("eleventy-postcss-extension");
 const filters = require("./src/utils/filters");
 const shortcodes = require("./src/utils/shortcodes");
+const svgSprite = require("eleventy-plugin-svg-sprite");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addWatchTarget("./src/styles");
@@ -39,6 +40,10 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addNunjucksAsyncShortcode("image", shortcodes.imageShortcode);
   eleventyConfig.addNunjucksAsyncFilter("jsmin", filters.jsmin);
+
+  eleventyConfig.addPlugin(svgSprite, {
+    path: "./src/images/svg",
+  });
 
   eleventyConfig.addFilter("markdownify", function (value) {
     const md = new markdownIt(options);

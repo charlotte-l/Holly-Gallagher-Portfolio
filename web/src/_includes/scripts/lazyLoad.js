@@ -1,5 +1,4 @@
 const lazyPictures = document.querySelectorAll(".lazy-picture");
-console.log(lazyPictures);
 
 const lazyLoad = (targets, onIntersection) => {
   const observer = new IntersectionObserver((entries, self) => {

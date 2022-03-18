@@ -12,7 +12,7 @@ function generateProject (project) {
   }
 }
 
-async function getProjects () {
+async function getProjects() {
   // Learn more: https://www.sanity.io/docs/data-store/how-queries-work
   const filter = groq`*[_type == "project" && defined(slug) && publishedAt < now()]`
   const projection = groq`{

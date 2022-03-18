@@ -1,5 +1,5 @@
-<header class="container mx-auto flex justify-between items-center mt-3 mb-6">
-    <span class="block font-display text-3xl tracking-wider"><a href="{{ '/' | url }}">Holly Gallagher</a></span>
+<header class="container mx-auto flex justify-between items-center mt-3 mb-10">
+    <span class="block font-display text-3xl tracking-wider"><a class="brand" href="{{ '/' | url }}">Holly Gallagher</a></span>
     <ul class="list-none flex gap-12">
         {%- for nav in collections.nav | sort(false, false, 'data.order') -%}
         <li class="nav-item{% if nav.url == page.url %} nav-item-active{% endif %}"{% if nav.url == page.url %} aria-current="page"{% endif %}><a href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a></li>

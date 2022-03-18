@@ -1,9 +1,9 @@
-import { format, parseISO } from 'date-fns'
+import {format, parseISO} from 'date-fns'
 
 export default {
-  name: 'page',
+  name: 'project',
   type: 'document',
-  title: 'Page',
+  title: 'Project',
   fields: [
     {
       name: 'title',
@@ -15,7 +15,7 @@ export default {
       name: 'slug',
       type: 'slug',
       title: 'Slug',
-      description: 'Some frontends will require a slug to be set to be able to show the post',
+      description: 'Some frontends will require a slug to be set to be able to show the project',
       options: {
         source: 'title',
         maxLength: 96
@@ -25,7 +25,7 @@ export default {
       name: 'publishedAt',
       type: 'datetime',
       title: 'Published at',
-      description: 'This can be used to schedule post for publishing'
+      description: 'This can be used to schedule projects for publishing'
     },
     {
       name: 'mainImage',
@@ -37,17 +37,7 @@ export default {
       type: 'excerptPortableText',
       title: 'Excerpt',
       description:
-        'This ends up on summary pages, on Google, when people share your post in social media.'
-    },
-    {
-      name: 'authors',
-      title: 'Authors',
-      type: 'array',
-      of: [
-        {
-          type: 'authorReference'
-        }
-      ]
+        'This ends up on summary pages, on Google, when people share your project in social media.'
     },
     {
       name: 'categories',
@@ -105,14 +95,16 @@ export default {
       slug: 'slug',
       media: 'mainImage'
     },
-    prepare({ title = 'No title', publishedAt, slug = {}, media }) {
-      let dateSegment;
-      if (publishedAt) dateSegment = format(parseISO(publishedAt), 'yyyy/MM')
-      const path = `/${dateSegment}/${slug.current}/`
+    prepare ({title = 'No title', publishedAt, slug = {}, media}) {
+      let path;
+      if (publishedAt) {
+        const dateSegment = format(parseISO(publishedAt), 'yyyy/MM')
+        path = `/${dateSegment}/${slug.current}/`
+      }
       return {
         title,
         media,
-        subtitle: publishedAt ? path : 'Not yet published'
+        subtitle: path || 'Missing publishing date'
       }
     }
   }

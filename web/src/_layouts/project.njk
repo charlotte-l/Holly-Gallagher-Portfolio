@@ -2,8 +2,7 @@
 layout: base.njk
 templateClass: tmpl-project
 ---
-<article>
+<article class="container mx-auto px-8">
   <h1>{{ project.title }}</h1>
-  <p>Written by {% for author in post.authors %}{{author.name}}{% endfor %}  </p>
-  <p><a href="{{ '/' | url }}">← Home</a></p>
+  {{ project.body | markdownify | safe }}
 </article>
