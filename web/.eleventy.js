@@ -41,6 +41,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addNunjucksAsyncShortcode("image", shortcodes.imageShortcode);
   eleventyConfig.addNunjucksAsyncFilter("jsmin", filters.jsmin);
 
+  eleventyConfig.addNunjucksFilter("limit", (arr, limit) => arr.slice(0, limit));
+
   eleventyConfig.addPlugin(svgSprite, {
     path: "./src/images/svg",
   });
