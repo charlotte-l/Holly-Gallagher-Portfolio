@@ -81,11 +81,11 @@
     font-size: 0.618rem;
   }
 
-  :where(header, main) a {
+  :where(header, main) a:not(.brand) {
     @apply text-brand-secondary relative;
   }
 
-  :where(header, main) a::before {
+  :where(header, main) a:not(.brand)::before {
     @apply content-[""] absolute w-full h-px bg-brand-secondary bottom-0 left-0 origin-right scale-x-0 transition-transform duration-300 ease-in-out;
   }
 

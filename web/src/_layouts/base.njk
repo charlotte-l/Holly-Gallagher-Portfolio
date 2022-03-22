@@ -74,7 +74,9 @@
       {% include "../_includes/footer.njk" %}
     {% endblock %}
 
-    {% svgsprite %}
+    <div class="overflow-hidden">
+      {% svgsprite %}
+    </div>
 
     {% set lazyLoadScript %}
       {% include "scripts/lazyLoad.js" %}
