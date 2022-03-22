@@ -10,17 +10,60 @@ order: 4
 
 <div class="container mx-auto px-8">
   <h1>Connect</h1>
-  <p class="text-3xl">Want to chat? Drop me an <a href="mailto:hollyrachael@hotmail.com">email</a>! Or...</p>
+  <p class="text-3xl">
+    Want to chat? Drop me an <a href="mailto:hollyrachael@hotmail.com">email</a>! Or...
+  </p>
   <div class="flex flex-row mt-16">
     <div class="basis-5/12">
       <h3 class="after:content-none text-left text-brand-secondary mt-0">Let's connect!</h3>
       <p class="font-bold">Sign up for email updates</p>
-      <p>
+      <!-- Begin Mailchimp Signup Form -->
+      <div id="mc_embed_signup">
+        <form
+          action="https://list-manage.us1.list-manage.com/subscribe/post?u=7d5d4a2f2efe3fe2b6ecc3c23&amp;id=938521773d"
+          method="post"
+          id="mc-embedded-subscribe-form"
+          name="mc-embedded-subscribe-form"
+          class="flex flex-row items-end gap-4"
+          target="_blank"
+          novalidate
+        >
+          <label for="mce-EMAIL">
+            <span>Email Address</span>
+            <input
+              type="email"
+              value=""
+              name="EMAIL"
+              class="mt-0 block w-full px-0.5 bg-transparent border-0 border-b-2 border-brand-secondary focus:ring-0 focus:border-black"
+              id="mce-EMAIL"
+            />
+          </label>
+          <!-- honeypot field for bot signups-->
+          <input
+            type="text"
+            name="b_7d5d4a2f2efe3fe2b6ecc3c23_938521773d"
+            tabindex="-1"
+            value=""
+            style="position: absolute; left: -5000px"
+            aria-hidden="true"
+          />
+          <button
+            type="submit"
+            value="Subscribe"
+            name="subscribe"
+            id="mc-embedded-subscribe"
+            class="rounded-full bg-brand-secondary text-black px-4 py-1"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+      <!--End mc_embed_signup-->
+      <p class="mt-4">
         Be among the first to hear about new shows, workshops, events and more! I send approximately
         one email a month.
       </p>
-
-      <p class="font-bold">Follow me on Twitter</p>
+      <p class="font-bold mt-16">Follow me on Twitter</p>
       <a
         class="twitter-timeline"
         data-dnt="true"
@@ -36,7 +79,7 @@ order: 4
         or reading. I also accept solicited and unsolicited script submissions. Or if you just fancy
         an initial chat about a project, drop me a message!
       </p>
-      <form name="contact" method="POST" data-netlify="true" class="grid grid-cols-1 gap-6">
+      <form name="contact" method="POST" data-netlify="true" action="/connect/success/" class="grid grid-cols-1 gap-6">
         <label class="block" for="name">
           <span class="">Name</span>
           <input
