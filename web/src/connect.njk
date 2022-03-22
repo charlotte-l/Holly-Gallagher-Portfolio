@@ -1,0 +1,97 @@
+---
+layout: base.njk
+title: Connect
+navtitle: Connect
+permalink: /connect/
+tags:
+  - nav
+order: 4
+---
+
+<div class="container mx-auto px-8">
+  <h1>Connect</h1>
+  <p class="text-3xl">Want to chat? Drop me an <a href="mailto:hollyrachael@hotmail.com">email</a>! Or...</p>
+  <div class="flex flex-row mt-16">
+    <div class="basis-5/12">
+      <h3 class="after:content-none text-left text-brand-secondary mt-0">Let's connect!</h3>
+      <p class="font-bold">Sign up for email updates</p>
+      <p>
+        Be among the first to hear about new shows, workshops, events and more! I send approximately
+        one email a month.
+      </p>
+
+      <p class="font-bold">Follow me on Twitter</p>
+      <a
+        class="twitter-timeline"
+        data-dnt="true"
+        data-theme="dark"
+        href="https://twitter.com/hollyrachael_?ref_src=twsrc%5Etfw"
+        >Tweets by hollyrachael_</a
+      >
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+    <div class="basis-5/12 ml-auto">
+      <p>
+        I'm always on the look out for new and inventive work so invite me along to a show, scratch
+        or reading. I also accept solicited and unsolicited script submissions. Or if you just fancy
+        an initial chat about a project, drop me a message!
+      </p>
+      <form name="contact" method="POST" data-netlify="true" class="grid grid-cols-1 gap-6">
+        <label class="block" for="name">
+          <span class="">Name</span>
+          <input
+            type="text"
+            class="mt-0 block w-full px-0.5 bg-transparent border-0 border-b-2 border-brand-secondary focus:ring-0 focus:border-black"
+            placeholder=""
+            name="name"
+            id="name"
+            autocomplete="name"
+            required
+          />
+        </label>
+        <label class="block" for="email">
+          <span class="">Email</span>
+          <input
+            type="email"
+            class="mt-0 block w-full px-0.5 bg-transparent border-0 border-b-2 border-brand-secondary focus:ring-0 focus:border-black"
+            name="email"
+            id="email"
+            pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$"
+            required
+          />
+        </label>
+        <label class="block" for="subject">
+          <span class="">Subject</span>
+          <select
+            class="block w-full mt-0 px-0.5 bg-transparent border-0 border-b-2 border-brand-secondary focus:ring-0 focus:border-black"
+            name="subject"
+            id="subject"
+            required
+          >
+            <option></option>
+            <option>Corporate event</option>
+            <option>Wedding</option>
+            <option>Birthday</option>
+            <option>Other</option>
+          </select>
+        </label>
+        <label class="block" for="message">
+          <span class="">Message</span>
+          <textarea
+            class="mt-0 block w-full px-0.5 bg-transparent border-0 border-b-2 border-brand-secondary focus:ring-0 focus:border-black"
+            rows="3"
+            name="message"
+            id="message"
+            required
+          ></textarea>
+        </label>
+        <button
+          type="submit"
+          class="rounded-full bg-brand-secondary text-black px-4 py-1 justify-self-end"
+        >
+          Send message
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

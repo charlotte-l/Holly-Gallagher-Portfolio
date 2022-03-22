@@ -21,5 +21,7 @@ module.exports = {
       display: ['"Frente H1"', ...defaultTheme.fontFamily.sans],
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 };
