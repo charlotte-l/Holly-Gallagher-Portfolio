@@ -28,9 +28,26 @@ export default {
     {
       name: 'author',
       type: 'reference',
-      description: 'Publish an author and set a reference to them here.',
       title: 'Author',
       to: [{type: 'author'}]
-    }
-  ]
+    },
+    {
+      name: 'mainColor',
+      type: 'colorPicker',
+      title: 'Main brand color',
+      description: 'The main brand color - this will be used as the background color of the site'
+    },
+    {
+      name: 'secondaryColor',
+      type: 'colorPicker',
+      title: 'Secondary brand color',
+      description: 'The secondary brand color - this will be used for elements like buttons and links on the site'
+    },
+    {
+      name: 'textColor',
+      type: 'colorPicker',
+      title: 'Text color',
+      description: 'The color of all text on the site (excluding links)'
+    },
+  ],
 }

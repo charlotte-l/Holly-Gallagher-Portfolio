@@ -5,16 +5,17 @@ module.exports = {
   content: ["./src/**/*.njk", "./src/**/*.md", "./src/**/*.js", "./.*.js", "./_site/**/*.html"],
   theme: {
     colors: {
-      "brand-primary": "#20234B",
-      "brand-secondary": "#3CB4E5",
-      "transparent": "transparent",
-      "current": "currentColor",
-      "black": colors.black,
-      "white": colors.white,
-      "gray": colors.gray,
-      "emerald": colors.emerald,
-      "indigo": colors.indigo,
-      "yellow": colors.yellow,
+      "brand-primary": 'var(--brand-primary)',
+      "brand-secondary": 'var(--brand-secondary)',
+      "brand-body": 'var(--brand-body)',
+      transparent: "transparent",
+      current: "currentColor",
+      black: colors.black,
+      white: colors.white,
+      gray: colors.gray,
+      emerald: colors.emerald,
+      indigo: colors.indigo,
+      yellow: colors.yellow,
     },
     fontFamily: {
       body: ['"Open Sans"', ...defaultTheme.fontFamily.sans],
@@ -22,6 +23,6 @@ module.exports = {
     },
   },
   plugins: [
-    require('@tailwindcss/forms'),
+    require("@tailwindcss/forms"),
   ],
 };
