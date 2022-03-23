@@ -3,7 +3,7 @@ export default {
     {name: 'structure-menu'},
     {
       name: 'document-list',
-      options: {title: 'Blog posts', order: '_createdAt desc', types: ['post']},
+      options: {title: 'Updates', order: '_createdAt desc', types: ['post']},
       layout: {width: 'medium'}
     },
     {

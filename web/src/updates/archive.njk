@@ -1,0 +1,13 @@
+---
+layout: base.njk
+navtitle: Archive
+permalink: /updates/archive/
+---
+
+<div class="container mx-auto px-8">
+  <h1>Archive</h1>
+
+  {% set postslist = collections.myPosts %}
+  {% include "postslist-archive.njk" %}
+
+</div>
