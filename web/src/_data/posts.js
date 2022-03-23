@@ -8,7 +8,8 @@ const hasToken = !!client.config().token
 function generatePost (post) {
   return {
     ...post,
-    body: BlocksToMarkdown(post.body, { serializers, ...client.config() })
+    excerpt: BlocksToMarkdown(post.excerpt, { serializers, ...client.config() }),
+    body: BlocksToMarkdown(post.body, { serializers, ...client.config() }),
   }
 }
 
@@ -20,6 +21,8 @@ async function getPosts () {
     publishedAt,
     title,
     slug,
+    excerpt,
+    mainImage,
     body[]{
       ...,
       children[]{

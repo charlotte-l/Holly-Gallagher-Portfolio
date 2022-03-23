@@ -1,0 +1,17 @@
+<div class="grid grid-cols-2 gap-x-32 gap-y-28">
+  {% for post in postslist %}
+    {% set currentPost = post.data.post %}
+    <div class="flex flex-col justify-center">
+      <a href="{{ post.url | url }}" class="inline-block font-display font-bold text-4xl tracking-wider">
+        {{ currentPost.title }}
+      </a>
+      <time class="block font-light text-sm mt-2 mb-4" datetime="{{ currentPost.publishedAt }}">{{ currentPost.publishedAt | readableDate }}</time>
+      {% if currentPost.excerpt %}
+        {# {{ currentPost.excerpt | markdownify | safe }} #}
+        {{ currentPost.body | markdownify | excerpt }}
+      {% else %}
+        {{ currentPost.body | markdownify }}
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>

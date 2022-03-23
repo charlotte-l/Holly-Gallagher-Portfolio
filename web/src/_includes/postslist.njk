@@ -1,9 +1,43 @@
-<ol class="">
-{% for post in postslist %}
-  {% set currentPost = post.data.post %}
-  <li class="">
-    <a href="{{ post.url | url }}" class="">{% if currentPost.title %}{{ currentPost.title }}{% else %}<code>{{ post.url }}</code>{% endif %}</a>
-    <time class="" datetime="{{ currentPost.publishedAt }}">{{ currentPost.publishedAt|readableDate }}</time>
-  </li>
-{% endfor %}
-</ol>
+<div class="grid grid-cols-2 gap-x-32 gap-y-28">
+  {% for post in postslist %}
+    {% set currentPost = post.data.post %}
+    <div class="flex flex-col justify-center">
+      <a href="{{ post.url | url }}" class="block w-fit font-display font-bold text-4xl tracking-wider">
+        {{ currentPost.title }}
+      </a>
+      <time class="block font-light text-sm mt-2 mb-4" datetime="{{ currentPost.publishedAt }}">{{ currentPost.publishedAt | readableDate }}</time>
+      {% if currentPost.excerpt %}
+        {# {{ currentPost.excerpt | markdownify | safe }} #}
+        {{ currentPost.body | markdownify | excerpt }}
+      {% else %}
+        {{ currentPost.body | markdownify }}
+      {% endif %}
+    </div>
+    <div class="relative">
+      {% if currentPost.mainImage.asset %}
+        <img class="rounded-[12.5rem]" src="{% croppedUrlFor currentPost.mainImage, 500, 275 %}" alt="{{ currentPost.mainImage.alt }}">
+        <div class="absolute aspect-square -bottom-4 -left-4 p-8 bg-brand-secondary text-black rounded-full">
+          <svg viewBox="0 0 100 100" style="width: 90%; height: 90%; top: 5%; left: 5%" class="absolute">
+              <defs>
+                  <path id="circle"
+                  d="
+                      M 50, 50
+                      m -37, 0
+                      a 37,37 0 1,1 74,0
+                      a 37,37 0 1,1 -74,0"/>
+              </defs>
+              <text font-size="14" letter-spacing="2">
+                  <textPath xlink:href="#circle">
+                  Read more&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Read more
+                  </textPath>
+              </text>
+          </svg>
+          <span class="text-6xl align-super block h-0 leading-[0.75]">&#8594;</span>
+          <a class="block w-full h-full after:absolute after:inset-0 after:p-8" href="/contact/"></a>
+      </div>
+      {% else %}
+        <code>{{ post.url }}</code>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>

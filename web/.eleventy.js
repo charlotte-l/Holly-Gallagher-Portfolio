@@ -3,6 +3,7 @@ const util = require("util");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const pluginCSS = require("eleventy-postcss-extension");
+const urlFor = require("./src/utils/imageUrl");
 const filters = require("./src/utils/filters");
 const shortcodes = require("./src/utils/shortcodes");
 const svgSprite = require("eleventy-plugin-svg-sprite");
@@ -18,7 +19,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy({ "src/fonts": "styles/fonts" });
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
-    return new Date(dateObj).toDateString();
+    return new Date(dateObj).toLocaleDateString('en-GB');
   });
 
   eleventyConfig.addFilter("htmlDateString", (dateObj) => {
@@ -39,6 +40,15 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.setLibrary("md", markdownIt(options).use(markdownItAnchor, opts));
 
   eleventyConfig.addNunjucksAsyncShortcode("image", shortcodes.imageShortcode);
+
+  eleventyConfig.addNunjucksAsyncShortcode("imageUrlFor", (image, width = "400") => {
+    return urlFor(image).width(width).auto("format");
+  });
+
+  eleventyConfig.addShortcode("croppedUrlFor", (image, width, height) => {
+    return urlFor(image).width(width).height(height).auto("format");
+  });
+
   eleventyConfig.addNunjucksAsyncFilter("jsmin", filters.jsmin);
 
   eleventyConfig.addNunjucksFilter("limit", (arr, limit) => arr.slice(0, limit));
@@ -47,10 +57,16 @@ module.exports = function (eleventyConfig) {
     path: "./src/images/svg",
   });
 
-  eleventyConfig.addFilter("markdownify", function (value) {
+  eleventyConfig.addFilter("markdownify", (value) => {
     const md = new markdownIt(options);
     return md.render(value);
   });
+
+  eleventyConfig.addFilter("excerpt", (post) => {
+    const content = post.replace(/(<([^>]+)>)/gi, "");
+    return content.substr(0, content.lastIndexOf(" ", 250)) + "...";
+  });
+
   return {
     templateFormats: ["md", "njk", "html", "liquid"],
 
