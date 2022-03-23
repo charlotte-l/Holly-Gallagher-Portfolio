@@ -57,7 +57,13 @@
       }
     </style>
     <link rel="stylesheet" type="text/css" href="/styles/main.css"/>
-    <link rel="stylesheet" type="text/css" href="/styles/theme.css"/>
+    <style>
+      :root {
+        --brand-primary: {{ theme.mainColor }};
+        --brand-secondary: {{theme.secondaryColor}};
+        --brand-body: {{theme.textColor}};
+      }
+    </style>
   </head>
   <body
     class="h-full text-brand-body antialiased bg-brand-primary bg-no-repeat bg-top bg-contain">
