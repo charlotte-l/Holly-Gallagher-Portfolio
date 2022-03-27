@@ -41,7 +41,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addNunjucksAsyncShortcode("image", shortcodes.imageShortcode);
 
-  eleventyConfig.addNunjucksAsyncShortcode("imageUrlFor", (image, width = "400") => {
+  eleventyConfig.addShortcode("imageUrlFor", (image, width = "400") => {
     return urlFor(image).width(width).auto("format");
   });
 
@@ -65,6 +65,19 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("excerpt", (post) => {
     const content = post.replace(/(<([^>]+)>)/gi, "");
     return content.substr(0, content.lastIndexOf(" ", 250)) + "...";
+  });
+
+  eleventyConfig.addFilter("addNbsp", (str) => {
+    if (!str) {
+      return;
+    }
+    let title = str.replace(/((.*)\s(.*))$/g, "$2&nbsp;$3");
+    title = title.replace(/"(.*)"/g, '\\"$1\\"');
+    return title;
+  });
+
+  eleventyConfig.addFilter("pluck", function (arr, value, attr) {
+    return arr.filter((item) => item.data[attr] === value);
   });
 
   return {

@@ -14,12 +14,12 @@ function generateProject (project) {
 
 async function getProjects() {
   // Learn more: https://www.sanity.io/docs/data-store/how-queries-work
-  const filter = groq`*[_type == "project" && defined(slug) && publishedAt < now()]`
+  const filter = groq`*[_type == "project" && defined(slug)]`
   const projection = groq`{
     _id,
-    publishedAt,
     title,
     slug,
+    mainImage,
     body[]{
       ...,
       children[]{
@@ -34,8 +34,8 @@ async function getProjects() {
     },
     "authors": authors[].author->
   }`
-  const order = `| order(publishedAt asc)`
-  const query = [filter, projection, order].join(' ')
+  
+  const query = [filter, projection].join(' ')
   const docs = await client.fetch(query).catch(err => console.error(err))
   const reducedDocs = overlayDrafts(hasToken, docs)
   const prepareProjects = reducedDocs.map(generateProject)

@@ -1,9 +1,62 @@
-<ol reversed class="projectslist" style="counter-reset: start-from {{ projectslist.length + 1 }}">
-{% for project in projectslist | reverse %}
-  {% set currentProject = project.data.project %}
-  <li class="projectslist-item{% if project.url == url %} projectslist-item-active{% endif %}">
-    <a href="{{ project.url | url }}" class="projectslist-link">{% if currentProject.title %}{{ currentProject.title }}{% else %}<code>{{ project.url }}</code>{% endif %}</a>
-    <time class="projectslist-date" datetime="{{ currentProject.publishedAt }}">{{ currentProject.publishedAt|readableDate }}</time>
-  </li>
-{% endfor %}
-</ol>
+<div class="embla overflow-hidden mb-32">
+  <button class="embla__prev aspect-square p-8 bg-brand-secondary text-black rounded-full" aria-label="Previous slide">
+    <span class="inline-block text-6xl align-[-1rem] h-0 leading-[0]">&#8592;</span>
+  </button>
+  <button class="embla__next aspect-square p-8 bg-brand-secondary text-black rounded-full ml-6" aria-label="Next slide">
+    <span class="inline-block text-6xl align-[-1rem] h-0 leading-[0]">&#8594;</span>
+  </button>
+  <div class="embla__viewport mt-16">
+    <div class="grid grid-rows-1 grid-cols-3 gap-8">
+      {% for project in projectslist %}
+        {% set currentProject = project.data.project %}
+        <div class="relative flex justify-center">
+          <a href="{{ project.url | url }}" class="stretched absolute w-full h-full after:absolute after:inset-0 after:z-[1]"></a>
+          <svg
+            class="absolute left-1/2 top-1/2 aspect-[1/1.5] -translate-x-1/2 -translate-y-1/2 overflow-visible"
+            height="550"
+            viewBox="0 0 400 600">
+            <defs>
+              <path
+                id="ellipse"
+                d="M400 300C400 465.685 310.457 600 200 600C89.5431 600 0 465.685 0 300C0 134.315 89.5431 0 200 0C310.457 0 400 134.315
+                  400 300Z"/>
+            </defs>
+            <text class="text-3xl tracking-wider fill-brand-secondary">
+              <textPath alignment-baseline="top" text-anchor="start" xlink:href="#ellipse">
+                {{ currentProject.title }}
+              </textPath>
+              <textPath alignment-baseline="top" startOffset="50%" text-anchor="start" xlink:href="#ellipse">
+                {{ currentProject.title }}
+              </textPath>
+            </text>
+          </svg>
+          <div class="h-[500px] aspect-[1/1.5] bg-no-repeat bg-cover bg-center" style="{% if currentProject.mainImage.asset %}background-image: url('{% imageUrlFor currentProject.mainImage.asset, 900 %}'); clip-path: url(#ellipse-clip){% endif %}"></div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  <svg width="0" height="0">
+    <defs>
+      <clipPath id="ellipse-clip" clipPathUnits="objectBoundingBox">
+        <path d="M1,0.5 A0.5,0.5,0,0,1,0.5,1 A0.5,0.5,0,0,1,0,0.5 A0.5,0.5,0,0,1,0.5,0 A0.5,0.5,0,0,1,1,0.5"></path>
+      </clipPath>
+    </defs>
+  </svg>
+</div>
+{% set carouselScript %}
+{% include "scripts/embla-carousel.umd.js" %}
+{% endset %}
+<script>
+  {{ carouselScript | safe }}</script>
+<script type="text/javascript">
+  const rootNode = document.querySelector('.embla')
+  const viewportNode = rootNode.querySelector('.embla__viewport')
+  const prevButtonNode = rootNode.querySelector('.embla__prev')
+  const nextButtonNode = rootNode.querySelector('.embla__next')
+  const embla = EmblaCarousel(viewportNode, {
+    loop: true,
+    startIndex: 1
+  })
+  prevButtonNode.addEventListener('click', embla.scrollPrev, false)
+  nextButtonNode.addEventListener('click', embla.scrollNext, false)
+</script>

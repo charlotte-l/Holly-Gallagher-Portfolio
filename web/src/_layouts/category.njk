@@ -1,0 +1,47 @@
+---
+layout: base.njk
+templateClass: mt-10 mb-10
+---
+
+<div class="container mx-auto px-8">
+  <h1>{{ category.title }}</h1>
+
+  {% if category.description %}
+    <div class="mb-10">
+      {{ category.description | markdownify | safe }}
+    </div>
+  {% endif %}
+
+  <div class="grid grid-cols-3 gap-x-32 gap-y-28">
+    {% for post in category.posts %}
+    <div class="flex flex-col justify-start">
+      <img
+        class="aspect-video rounded-2xl"
+        src="{% croppedUrlFor post.mainImage, 300 %}"
+        alt="{{ post.mainImage.alt }}"
+      />
+      <div class="mt-4">
+        {% for category in currentPost.categories %}
+          <a class="" href="/updates/{{ category.slug | slug }}">{{ category.title }}{% if not loop.last %}, {% endif %}</a>
+        {% endfor %}
+        <a
+          href="{{ post.url | url }}"
+          class="block w-fit font-display font-bold text-3xl tracking-wider mt-4"
+        >
+          {{ post.title }}
+        </a>
+      </div>
+
+      <time class="block font-light text-sm mt-2 mb-4" datetime="{{ post.publishedAt }}">
+        {{ post.publishedAt | readableDate }}
+      </time>
+      {% if post.excerpt %}
+      {{ post.excerpt | markdownify | safe }}
+      {% else %}
+      {{ post.body | markdownify }}
+      {% endif %}
+      <a href="{{ post.url | url }}" class="block w-fit"> Read more&thinsp;&#8594; </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>

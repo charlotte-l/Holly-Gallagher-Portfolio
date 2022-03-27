@@ -15,7 +15,7 @@ export default {
       name: 'slug',
       type: 'slug',
       title: 'Slug',
-      description: 'Some frontends will require a slug to be set to be able to show the post',
+      description: 'This is a unique suffix that is appended to the URL of your website in order to create a unique link to this post. Click `Generate` to generate one automatically from the title, or enter a custom one here. Slugs should not contain spaces!',
       options: {
         source: 'title',
         maxLength: 96
@@ -25,7 +25,8 @@ export default {
       name: 'publishedAt',
       type: 'datetime',
       title: 'Published at',
-      description: 'This can be used to schedule post for publishing'
+      description: 'This can be used to schedule post for publishing',
+      initialValue: (new Date()).toISOString(),
     },
     {
       name: 'mainImage',
@@ -91,20 +92,14 @@ export default {
   preview: {
     select: {
       title: 'title',
-      publishedAt: 'publishedAt',
       slug: 'slug',
       media: 'mainImage'
     },
-    prepare ({title = 'No title', publishedAt, slug = {}, media}) {
-      let path;
-      if (publishedAt) {
-        const dateSegment = format(parseISO(publishedAt), 'yyyy/MM')
-        path = `/${dateSegment}/${slug.current}/`
-      }
+    prepare ({title = 'No title', slug = {}, media}) {
       return {
         title,
         media,
-        subtitle: path || 'Missing publishing date'
+        subtitle: `/updates/${slug.current}/`
       }
     }
   }

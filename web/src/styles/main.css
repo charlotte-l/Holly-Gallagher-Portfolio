@@ -83,15 +83,17 @@
     font-size: 0.618rem;
   }
 
-  :where(header, main) a:not(.brand) {
+  :where(header, main) a:not(.brand, .stretched, .badge) {
     @apply text-brand-secondary relative;
   }
 
-  :where(header, main) a:not(.brand)::before {
+  :where(header, main) a:not(.brand, .stretched, .badge)::before,
+  li[aria-current="page"] a::before {
     @apply content-[""] absolute w-full h-px bg-brand-secondary bottom-0 left-0 origin-right scale-x-0 transition-transform duration-300 ease-in-out;
   }
 
-  :where(header, main) a:not(.brand):where(:hover, :focus-visible)::before {
+  :where(header, main) a:not(.brand, .stretched, .badge):where(:hover, :focus-visible)::before,
+  li[aria-current="page"] a::before {
     @apply origin-left scale-x-100
   }
 }

@@ -1,8 +1,15 @@
 ---
 layout: base.njk
-templateClass: tmpl-project
+templateClass: mb-10
 ---
-<article class="container mx-auto px-8">
-  <h1>{{ project.title }}</h1>
-  {{ project.body | markdownify | safe }}
+
+<article class="overflow-hidden" role="main">
+  <div class="{% if project.mainImage.asset %}py-32 bg-no-repeat bg-cover bg-center{% endif %}" style="{% if project.mainImage.asset %}background-image: url('{%  imageUrlFor project.mainImage.asset, 900  %}'){% endif %}">
+    <div class="container mx-auto">
+      <h1 class="text-8xl leading-[1.15] max-w-2xl ml-auto pt-4 z-10 relative before:absolute before:bg-brand-primary before:-right-16 before:top-0 before:h-[125%] before:w-[120%] before:-z-10">{{ project.title | addNbsp | safe }}</h1>
+    </div>
+  </div>
+  <div class="max-w-prose mx-auto mt-16">
+    {{ project.body | markdownify | safe }}
+  </div>
 </article>

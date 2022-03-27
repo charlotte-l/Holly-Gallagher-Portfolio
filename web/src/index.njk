@@ -1,15 +1,15 @@
 ---
 layout: base.njk
 navtitle: Home
-templateClass: mb-10
+templateClass: mt-20 mb-10
 ---
 
-<div class="container mx-auto px-8">
+<div class="container mx-auto px-16">
     <div class="flex">
         <div class="basis-8/12">
-            <div class="relative w-10/12 mb-6">
-                {% image {relativeSrc: "/images/tensile-strength.jpg", widths: [600, 1200], sizes: "40vw", className: "index-arch relative block", imgClassName: "rounded-tl-[50%] rounded-tr-[50%]"} %}
-                <div class="absolute aspect-square -bottom-6 -left-6 p-12 bg-brand-secondary text-black rounded-full">
+            <div class="relative w-9/12 mb-6">
+                {% image {relativeSrc: "/images/tensile-strength.jpg", widths: [600, 1200], sizes: "40vw", className: "relative block", imgClassName: "rounded-tl-[50%] rounded-tr-[50%]"} %}
+                <div class="absolute aspect-square -bottom-8 -left-8 p-12 bg-brand-secondary text-black rounded-full">
                     <svg viewBox="0 0 100 100" style="width: 90%; height: 90%; top: 5%; left: 5%" class="absolute">
                         <defs>
                             <path id="circle"
@@ -31,7 +31,7 @@ templateClass: mb-10
             </div>
         </div>
         <div class="basis-4/12">
-            <h1 class="text-left -ml-72 after:content-none">Holly Gallagher</h1>
+            <h1 class="text-[15rem] text-left -ml-96 leading-none after:content-none">Holly Gallagher</h1>
             <span class="block text-right text-5xl leading-[1.15] bar"><span class="text-brand-secondary font-normal">theatre</span> <br/>maker <br/>director <br/>producer <br/>facilitator</span>
         </div>
     </div>
