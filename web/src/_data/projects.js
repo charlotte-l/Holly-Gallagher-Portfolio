@@ -8,7 +8,10 @@ const hasToken = !!client.config().token
 function generateProject (project) {
   return {
     ...project,
-    body: BlocksToMarkdown(project.body, { serializers, ...client.config() })
+    excerpt: BlocksToMarkdown(project.excerpt, { serializers, ...client.config() }),
+    credits: BlocksToMarkdown(project.credits, { serializers, ...client.config() }),
+    description: BlocksToMarkdown(project.description, { serializers, ...client.config() }),
+    body: BlocksToMarkdown(project.body, { serializers, ...client.config() }),
   }
 }
 
@@ -19,7 +22,10 @@ async function getProjects() {
     _id,
     title,
     slug,
+    excerpt,
     mainImage,
+    credits,
+    description,
     body[]{
       ...,
       children[]{
@@ -32,7 +38,13 @@ async function getProjects() {
         }
       }
     },
-    "authors": authors[].author->
+    "authors": authors[].author->,
+    categories[] -> {
+      title,
+      description,
+      "slug": slug.current,
+    },
+    imageGallery,
   }`
   
   const query = [filter, projection].join(' ')

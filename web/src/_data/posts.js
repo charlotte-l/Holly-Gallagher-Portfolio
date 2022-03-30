@@ -40,7 +40,7 @@ async function getPosts() {
       title,
       description,
       "slug": slug.current,
-    }
+    },
   }`;
   const order = `| order(publishedAt desc)`;
   const query = [filter, projection, order].join(" ");

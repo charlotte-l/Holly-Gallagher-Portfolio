@@ -2,21 +2,13 @@ export default {
   name: 'author',
   type: 'document',
   title: 'Author',
+  __experimental_actions: ['update', /* 'create', 'delete', */ 'publish'],
   fields: [
     {
       name: 'name',
       type: 'string',
-      title: 'Name'
-    },
-    {
-      name: 'slug',
-      type: 'slug',
-      title: 'Slug',
-      description: 'This is the page where your profile will be',
-      options: {
-        source: 'name',
-        maxLength: 96
-      }
+      title: 'Name',
+      readOnly: true
     },
     {
       name: 'image',
@@ -47,7 +39,6 @@ export default {
   preview: {
     select: {
       title: 'name',
-      subtitle: 'slug.current',
       media: 'image'
     }
   }

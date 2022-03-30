@@ -42,13 +42,34 @@ export default {
             type: 'category'
           }
         }
-      ]
+      ],
+      validation: Rule => Rule.unique(),
+    },
+    {
+      name: 'credits',
+      type: 'aboutPortableText',
+      title: 'Credits'
+    },
+    {
+      name: 'description',
+      type: 'aboutPortableText',
+      title: 'Description'
     },
     {
       name: 'body',
       type: 'bodyPortableText',
       title: 'Body'
-    }
+    },
+    {
+      name: 'imageGallery',
+      title: 'Image Gallery',
+      type: 'array',
+      of: [
+        {
+          type: 'galleryImage',
+        },
+      ],
+     }
   ],
   orderings: [
     {

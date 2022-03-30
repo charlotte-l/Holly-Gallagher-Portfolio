@@ -1,6 +1,6 @@
 <header class="container mx-auto flex justify-between items-center my-3">
     <span class="block font-display font-bold text-3xl tracking-wider"><a class="brand" href="{{ '/' | url }}">Holly Gallagher</a></span>
-    <ul class="list-none flex gap-12">
+    <ul class="list-none flex gap-12" role="nav">
         {%- for nav in collections.nav | sort(false, false, 'data.order') -%}
         <li class="nav-item"{% if nav.url == page.url %} aria-current="page"{% endif %}><a href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a></li>
         {%- endfor -%}

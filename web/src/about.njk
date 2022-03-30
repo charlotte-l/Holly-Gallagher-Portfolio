@@ -11,14 +11,31 @@ templateClass: mt-10 mb-10
 
 <div class="container mx-auto px-8">
   <h1>About Holly</h1>
-  {{authors[0].bio | markdownify | safe }}
+
+  <div class="text-3xl">
+    {{authors[0].bio | markdownify | safe }}
+  </div>
+
   {% if authors[0].image.asset %}
-    {{authors[0].image}}
+  </div>
+
+  <div class="w-full h-96 my-20 bg-no-repeat bg-cover bg-center" style="background-image: url('{% imageUrlFor authors[0].image.asset, 1600 %}')"></div>
+
+  <div class="container mx-auto px-8">
   {% endif %}
-  <h2>Key Experience</h2>
-  {{authors[0].key_experience | markdownify | safe }}
-  <h2>Training and Support</h2>
-  {{authors[0].training_support | markdownify | safe }}
-  <h2>Courses and Institutions</h2>
-  {{authors[0].courses_institutions | markdownify | safe }}
+
+  <section>
+    <h2>Key Experience</h2>
+    {{authors[0].key_experience | markdownify | safe }}
+  </section>
+
+  <section>
+    <h2>Training and Support</h2>
+    {{authors[0].training_support | markdownify | safe }}
+  </section>
+
+  <section>
+    <h2>Courses and Institutions</h2>
+    {{authors[0].courses_institutions | markdownify | safe }}
+  </section>
 </div>

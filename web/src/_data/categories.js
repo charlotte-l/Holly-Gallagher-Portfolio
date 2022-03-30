@@ -37,7 +37,18 @@ async function getCategories() {
         "title": ^->title,
         "slug": ^->slug.current
       }
-    }
+    },
+    "projects": *[_type == "project" && references(^._id)]{
+      title,
+      slug,
+      mainImage,
+      body,
+      excerpt,
+      "categories": categories[]{
+        "title": ^->title,
+        "slug": ^->slug.current
+      }
+    },
   }`;
   const query = [filter, projection].join(" ");
   const docs = await client.fetch(query).catch((err) => console.error(err));

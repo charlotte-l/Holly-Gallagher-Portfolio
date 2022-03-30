@@ -3,13 +3,148 @@ layout: base.njk
 templateClass: mb-10
 ---
 
-<article class="overflow-hidden" role="main">
+<article class="overflow-hidden">
   <div class="{% if project.mainImage.asset %}py-32 bg-no-repeat bg-cover bg-center{% endif %}" style="{% if project.mainImage.asset %}background-image: url('{%  imageUrlFor project.mainImage.asset, 900  %}'){% endif %}">
     <div class="container mx-auto">
       <h1 class="text-8xl leading-[1.15] max-w-2xl ml-auto pt-4 z-10 relative before:absolute before:bg-brand-primary before:-right-16 before:top-0 before:h-[125%] before:w-[120%] before:-z-10">{{ project.title | addNbsp | safe }}</h1>
     </div>
   </div>
+
+  {% if project.excerpt %}
+    <div class="container mx-auto mt-16 text-3xl">
+      {{ project.excerpt | markdownify | safe }}
+    </div>
+  {% endif %}
+
+  {% if project.credits or project.description %}
+  <div class="container mx-auto mt-16">
+    <div class="flex gap-10">
+      <div class="basis-1/5">
+        {{ project.credits | markdownify | safe }}
+      </div>
+      <div class="basis-4/5">
+        {{ project.description | markdownify | safe }}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if project.imageGallery.length > 4 %}
+    <div class="embla overflow-hidden mt-16 mb-32">
+      <button class="embla__prev aspect-square p-8 bg-brand-secondary text-black rounded-full  mb-8" aria-label="Previous slide">
+        <span class="inline-block text-6xl align-[-1rem] h-0 leading-[0]">&#8592;</span>
+      </button>
+      <button class="embla__next aspect-square p-8 bg-brand-secondary text-black rounded-full ml-6 mb-8" aria-label="Next slide">
+        <span class="inline-block text-6xl align-[-1rem] h-0 leading-[0]">&#8594;</span>
+      </button>
+
+      <div class="embla__viewport">
+        <div class="grid grid-rows-1 grid-cols-4 gap-24">
+          {% for image in project.imageGallery %}
+            <div class="lightbox cursor-pointer group relative basis-1/4 aspect-[1/1.5] rounded-[15rem] bg-no-repeat bg-cover bg-center max-w-[320px]" style="background-image: url('{% croppedUrlFor image, 600 %}')" data-img="{%  imageUrlFor image, 1200  %}" data-alt="{{image.alt}}" data-caption="{{image.caption}}">
+              <div class="absolute aspect-square transition-all duration-300 right-6 bottom-6 rounded-full bg-brand-secondary p-0 group-hover:p-4">
+                <svg viewBox="0 0 100 100" style="width: 140%; height: 140%; top: -32%; left: -24%" class="absolute scale-0 -rotate-12 overflow-visible transition-transform duration-300 group-hover:scale-100">
+                  <defs>
+                      <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
+                  </defs>
+                  <text class="text-3xl fill-brand-secondary" letter-spacing="0">
+                      <textPath xlink:href="#circle">
+                        Expand
+                      </textPath>
+                  </text>
+                </svg>
+                <span class="block text-5xl align-super h-0 leading-[0.75] text-black transition-opacity delay-100 scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100">&#8689;</span>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% elseif project.imageGallery.length > 0 %}
+    <div class="container mx-auto flex justify-evenly gap-24 mt-16 mb-32">
+      {% for image in project.imageGallery %}
+        <div class="lightbox cursor-pointer group relative basis-1/4 aspect-[1/1.5] rounded-[15rem] bg-no-repeat bg-cover bg-center max-w-[320px]" style="background-image: url('{% croppedUrlFor image, 600 %}')" data-img="{%  imageUrlFor image, 1200  %}" data-alt="{{image.alt}}" data-caption="{{image.caption}}">
+          <div class="absolute aspect-square transition-all duration-300 right-6 bottom-6 rounded-full bg-brand-secondary p-0 group-hover:p-4">
+            <svg viewBox="0 0 100 100" style="width: 140%; height: 140%; top: -32%; left: -24%" class="absolute scale-0 -rotate-12 overflow-visible transition-transform duration-300 group-hover:scale-100">
+              <defs>
+                  <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
+              </defs>
+              <text class="text-3xl fill-brand-secondary" letter-spacing="0">
+                  <textPath xlink:href="#circle">
+                    Expand
+                  </textPath>
+              </text>
+            </svg>
+            <span class="block text-5xl align-super h-0 leading-[0.75] text-black transition-opacity delay-100 scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100">&#8689;</span>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
   <div class="max-w-prose mx-auto mt-16">
     {{ project.body | markdownify | safe }}
   </div>
 </article>
+
+{% if project.imageGallery.length > 4 %}
+
+{% set carouselScript %}
+  {% include "scripts/embla-carousel.umd.js" %}
+{% endset %}
+
+<script>{{ carouselScript | safe }}</script>
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  const rootNode = document.querySelector('.embla')
+  const viewportNode = rootNode.querySelector('.embla__viewport')
+  const prevButtonNode = rootNode.querySelector('.embla__prev')
+  const nextButtonNode = rootNode.querySelector('.embla__next')
+
+  const embla = EmblaCarousel(viewportNode, {
+    loop: true,
+    startIndex: 1
+  })
+
+  prevButtonNode.addEventListener('click', embla.scrollPrev, false)
+  nextButtonNode.addEventListener('click', embla.scrollNext, false)
+});
+</script>
+
+{% endif %}
+
+{% if project.imageGallery.length > 0 %}
+
+{% set lightboxScript %}
+  {% include "scripts/basicLightbox.min.js" %}
+{% endset %}
+
+<script>{{ lightboxScript | safe }}</script>
+
+<script type="text/javascript">
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.lightbox').forEach(el => el.addEventListener('click', buildLightbox));
+
+  function buildLightbox(e) {
+    // get root lightbox element with attached data attributes
+    const targetImg = e.target.closest(".lightbox");
+    const imgUrl = targetImg.dataset.img;
+    const imgAlt = targetImg.dataset.alt;
+    const imgCaption = targetImg.dataset.caption;
+
+    basicLightbox.create(`
+      <div class="container px-8 flex">
+        <div class="bg-brand-primary grow-1 shrink-0 basis-full max-w-xs p-6 ${!imgCaption && 'hidden'}">
+          <p>${imgCaption}</p>
+        </div>
+        <div class="">
+          <img src="${imgUrl}" alt="${imgAlt}">
+        </div>
+      </div>
+    `).show();
+  }
+});
+</script>
+
+{% endif %}

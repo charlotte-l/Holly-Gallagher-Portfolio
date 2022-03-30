@@ -3,7 +3,7 @@ layout: base.njk
 templateClass: mb-10
 ---
 
-<article class="overflow-hidden" role="main">
+<article class="overflow-hidden">
   <div class="{% if post.mainImage.asset %}py-32 bg-no-repeat bg-cover bg-center{% endif %}" style="{% if post.mainImage.asset %}background-image: url('{%  imageUrlFor post.mainImage.asset, 900  %}'){% endif %}">
     <div class="container mx-auto">
       <h1 class="text-8xl leading-[1.15] max-w-2xl ml-auto pt-4 z-10 relative before:absolute before:bg-brand-primary before:-right-16 before:top-0 before:h-[125%] before:w-[120%] before:-z-10">{{ post.title | addNbsp | safe }}</h1>

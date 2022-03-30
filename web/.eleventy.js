@@ -1,7 +1,9 @@
 const { DateTime } = require("luxon");
+const htmlmin = require("html-minifier");
 const util = require("util");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
+const markdownItLinkAttributes = require("markdown-it-link-attributes");
 const pluginCSS = require("eleventy-postcss-extension");
 const urlFor = require("./src/utils/imageUrl");
 const filters = require("./src/utils/filters");
@@ -31,6 +33,15 @@ module.exports = function (eleventyConfig) {
     breaks: true,
     linkify: true,
   };
+
+  let markdownItLinkAttributesOpts = process.env.ELEVENTY_ENV === "production" ? {
+    pattern: /^(?!(https:\/\/holly-gallagher-portfolio\.com|#)).*$/gm,
+    attrs: {
+      target: '_blank',
+      rel: 'noopener noreferrer',
+    },
+  } : {};
+
   let opts = {
     permalink: true,
     permalinkClass: "direct-link",
@@ -58,7 +69,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter("markdownify", (value) => {
-    const md = new markdownIt(options);
+    const md = new markdownIt(options).use(markdownItLinkAttributes, markdownItLinkAttributesOpts);
     return md.render(value);
   });
 
@@ -78,6 +89,19 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("pluck", function (arr, value, attr) {
     return arr.filter((item) => item.data[attr] === value);
+  });
+
+  eleventyConfig.addTransform("htmlmin", function(content) {
+    if( this.outputPath && this.outputPath.endsWith(".html") ) {
+      let minified = htmlmin.minify(content, {
+        useShortDoctype: true,
+        removeComments: true,
+        collapseWhitespace: true
+      });
+      return minified;
+    }
+
+    return content;
   });
 
   return {

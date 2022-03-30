@@ -51,7 +51,8 @@ export default {
             type: 'category'
           }
         }
-      ]
+      ],
+      validation: Rule => Rule.unique()
     },
     {
       name: 'body',

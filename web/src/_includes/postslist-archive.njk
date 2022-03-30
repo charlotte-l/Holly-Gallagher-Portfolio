@@ -7,7 +7,9 @@
         {% for category in currentPost.categories %}
           <a class="" href="/updates/{{ category.slug | slug }}">{{ category.title }}{% if not loop.last %}, {% endif %}</a>
         {% endfor %}
-        <a href="{{ post.url | url }}" class="block w-fit font-display font-bold text-3xl tracking-wider mt-4">
+      </div>
+      <div class="mt-4">
+        <a href="{{ post.url | url }}" class="font-display font-bold text-3xl tracking-wider">
           {{ currentPost.title }}
         </a>
       </div>
@@ -15,7 +17,7 @@
       {% if currentPost.excerpt %}
         {{ currentPost.excerpt | markdownify | safe }}
       {% else %}
-        {{ currentPost.body | markdownify }}
+        {{ currentPost.body | markdownify | excerpt }}
       {% endif %}
       <a href="{{ post.url | url }}" class="block w-fit">
         Read more&thinsp;&#8594;

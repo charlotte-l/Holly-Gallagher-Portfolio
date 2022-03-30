@@ -1,38 +1,40 @@
 ---
 layout: base.njk
 navtitle: Home
-templateClass: mt-20 mb-10
+templateClass: mt-20 mb-32
 ---
 
 <div class="container mx-auto px-16">
     <div class="flex">
         <div class="basis-8/12">
-            <div class="relative w-9/12 mb-6">
-                {% image {relativeSrc: "/images/tensile-strength.jpg", widths: [600, 1200], sizes: "40vw", className: "relative block", imgClassName: "rounded-tl-[50%] rounded-tr-[50%]"} %}
-                <div class="absolute aspect-square -bottom-8 -left-8 p-12 bg-brand-secondary text-black rounded-full">
-                    <svg viewBox="0 0 100 100" style="width: 90%; height: 90%; top: 5%; left: 5%" class="absolute">
-                        <defs>
-                            <path id="circle"
-                            d="
-                                M 50, 50
-                                m -37, 0
-                                a 37,37 0 1,1 74,0
-                                a 37,37 0 1,1 -74,0"/>
-                        </defs>
-                        <text font-size="14" letter-spacing="2">
-                            <textPath xlink:href="#circle">
-                            Let's talk&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Let's talk
-                            </textPath>
-                        </text>
-                    </svg>
-                    <span class="text-6xl align-super block h-0 leading-[0.75]">&#8594;</span>
-                    <a class="after:absolute after:inset-0" href="/contact/"></a>
-                </div>
+            <div class="relative h-full w-9/12 mb-6">
+                <div class="h-full rounded-tl-[50%] rounded-tr-[50%] bg-no-repeat bg-cover bg-center" style="background-image: url('{% croppedUrlFor metadata.heroImage, 1000 %}')"></div>
+                <a href="/connect/">
+                    <div class="absolute aspect-square -bottom-8 -left-8 p-12 bg-brand-secondary text-black rounded-full">
+                        <svg viewBox="0 0 100 100" style="width: 90%; height: 90%; top: 5%; left: 5%" class="absolute animate-spin-slow pause hover:play">
+                            <defs>
+                                <path id="circle"
+                                d="
+                                    M 50, 50
+                                    m -37, 0
+                                    a 37,37 0 1,1 74,0
+                                    a 37,37 0 1,1 -74,0"/>
+                            </defs>
+                            <text font-size="14" letter-spacing="2">
+                                <textPath xlink:href="#circle">
+                                Let's talk&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Let's talk
+                                </textPath>
+                            </text>
+                        </svg>
+                        <span class="text-6xl align-super block h-0 leading-[0.75]">&#8594;</span>
+                    </div>
+                </a>
             </div>
         </div>
-        <div class="basis-4/12">
-            <h1 class="text-[15rem] text-left -ml-96 leading-none after:content-none">Holly Gallagher</h1>
-            <span class="block text-right text-5xl leading-[1.15] bar"><span class="text-brand-secondary font-normal">theatre</span> <br/>maker <br/>director <br/>producer <br/>facilitator</span>
+        <div class="basis-4/12 z-10">
+            <h1 class="text-[15rem] mb-0 text-left -ml-80 leading-none after:content-none">Holly Gallagher</h1>
+            <span class="block text-right text-3xl font-display -ml-80 mb-10 text-brand-secondary"><em>(she/her)</em></span>
+            <span class="block text-right text-5xl leading-[1.15] pb-8 bar"><span class="text-brand-secondary">theatre</span> <br/>maker <br/>director <br/>producer <br/>facilitator</span>
         </div>
     </div>
 </div>

@@ -4,32 +4,34 @@
     <a class="stretched absolute w-full h-full after:absolute after:inset-0 after:z-[1]" href="{{ post.url | url }}"></a>
     <div class="grid grid-cols-2 gap-x-32">
       <div class="flex flex-col justify-center">
-        <a href="{{ post.url | url }}" class="block w-fit font-display font-bold text-4xl tracking-wider">
+        <a href="{{ post.url | url }}" class="block w-fit font-display font-bold text-4xl tracking-wider z-10">
           {{ currentPost.title | addNbsp | safe }}
         </a>
         <time class="block font-light text-sm mt-2 mb-4" datetime="{{ currentPost.publishedAt }}">{{ currentPost.publishedAt | readableDate }}</time>
         {% if currentPost.excerpt %}
-          {{ currentPost.excerpt | markdownify | addNbsp | safe }}
+          {{ currentPost.excerpt | markdownify | safe }}
         {% else %}
-          {{ currentPost.body | markdownify | addNbsp | excerpt }}
+          {{ currentPost.body | markdownify | excerpt }}
         {% endif %}
       </div>
       <div class="relative">
         {% if currentPost.mainImage.asset %}
           <img class="rounded-[12.5rem]" src="{% croppedUrlFor currentPost.mainImage, 500, 275 %}" alt="{{ currentPost.mainImage.alt }}">
-          <div class="absolute aspect-square -bottom-4 -left-4 p-8 bg-brand-secondary text-black rounded-full">
-            <svg viewBox="0 0 100 100" style="width: 90%; height: 90%; top: 5%; left: 5%" class="absolute">
-              <defs>
-                <path id="circle" d=" M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"/>
-              </defs>
-              <text font-size="14" letter-spacing="2">
-                <textPath xlink:href="#circle">
-                  Read more&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Read more
-                </textPath>
-              </text>
-            </svg>
-            <span class="text-6xl align-super block h-0 leading-[0.75]">&#8594;</span>
-          </div>
+          <a href="{{ post.url | url }}">
+            <div class="absolute aspect-square -bottom-4 -left-4 p-8 bg-brand-secondary text-black rounded-full">
+              <svg viewBox="0 0 100 100" style="width: 90%; height: 90%; top: 5%; left: 5%" class="absolute z-10 animate-spin-slow pause hover:play">
+                <defs>
+                  <path id="circle" d=" M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"/>
+                </defs>
+                <text font-size="14" letter-spacing="2">
+                  <textPath xlink:href="#circle">
+                    Read more&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Read more
+                  </textPath>
+                </text>
+              </svg>
+              <span class="text-6xl align-super block h-0 leading-[0.75]">&#8594;</span>
+            </div>
+          </a>
         {% else %}
           <code>{{ post.url }}</code>
         {% endif %}

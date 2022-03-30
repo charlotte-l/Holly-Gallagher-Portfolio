@@ -49,5 +49,18 @@ export default {
       title: 'Text color',
       description: 'The color of all text on the site (excluding links)'
     },
+    {
+      name: 'heroImage',
+      type: 'image',
+      title: 'Homepage image',
+      description: 'Select a main image to display on the homepage of your website',
+      required: true,
+    },
+    {
+      name: 'featuredLink',
+      type: 'url',
+      title: 'Homepage featured link',
+      description: 'A link to a page on your website. This will be shown on the homepage',
+    }
   ],
 }

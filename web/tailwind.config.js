@@ -21,6 +21,14 @@ module.exports = {
       body: ['"Open Sans"', ...defaultTheme.fontFamily.sans],
       display: ['"Frente H1"', ...defaultTheme.fontFamily.sans],
     },
+    extend: {
+      animation: {
+        'spin-slow': 'spin 20s linear infinite',
+      },
+      maxWidth: {
+        'prose': '75ch',
+      }
+    }
   },
   plugins: [
     require("@tailwindcss/forms"),
