@@ -19,6 +19,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addPassthroughCopy({ "src/fonts": "styles/fonts" });
+  eleventyConfig.addPassthroughCopy("src/images");
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return new Date(dateObj).toLocaleDateString('en-GB');

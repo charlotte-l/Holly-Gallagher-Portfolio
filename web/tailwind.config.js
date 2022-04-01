@@ -24,6 +24,17 @@ module.exports = {
     extend: {
       animation: {
         'spin-slow': 'spin 20s linear infinite',
+        'heartbeat': 'heartbeat 5s ease-in-out infinite both',
+      },
+      keyframes: {
+        heartbeat: {
+          '0%, 100%': {
+            transform: 'scale(1)'
+          },
+          '50%': {
+            transform: 'scale(0.9)'
+          }
+        },
       },
       maxWidth: {
         'prose': '75ch',
