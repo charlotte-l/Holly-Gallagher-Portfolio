@@ -20,6 +20,7 @@ module.exports = {
     fontFamily: {
       body: ['"Open Sans"', ...defaultTheme.fontFamily.sans],
       display: ['"Frente H1"', ...defaultTheme.fontFamily.sans],
+      serif: [...defaultTheme.fontFamily.serif],
     },
     extend: {
       animation: {
