@@ -42,8 +42,8 @@ templateClass: mb-10
         <div class="grid grid-rows-1 grid-cols-4 gap-24">
           {% for image in project.imageGallery %}
             <div class="lightbox cursor-pointer group relative basis-1/4 aspect-[1/1.5] rounded-[15rem] bg-no-repeat bg-cover bg-center max-w-[320px]" style="background-image: url('{% croppedUrlFor image, 600 %}')" data-img="{%  imageUrlFor image, 1200  %}" data-alt="{{image.alt}}" data-caption="{{image.caption}}">
-              <div class="absolute aspect-square transition-all duration-300 right-6 bottom-6 rounded-full bg-brand-secondary p-0 group-hover:p-4">
-                <svg viewBox="0 0 100 100" style="width: 140%; height: 140%; top: -32%; left: -24%" class="absolute scale-0 -rotate-12 overflow-visible transition-transform duration-300 group-hover:scale-100">
+              <div class="absolute aspect-square transition-all duration-300 right-6 bottom-6 rounded-full bg-brand-secondary outline-1 outline-offset-4 outline-brand-secondary outline-double p-0 group-hover:p-4">
+                <svg viewBox="0 0 100 100" style="width: 140%; height: 140%; top: -36%; left: -28%" class="absolute scale-0 -rotate-12 overflow-visible transition-transform duration-300 group-hover:scale-100">
                   <defs>
                       <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
                   </defs>
@@ -64,8 +64,8 @@ templateClass: mb-10
     <div class="container mx-auto flex justify-evenly gap-24 mt-16 mb-32">
       {% for image in project.imageGallery %}
         <div class="lightbox cursor-pointer group relative basis-1/4 aspect-[1/1.5] rounded-[15rem] bg-no-repeat bg-cover bg-center max-w-[320px]" style="background-image: url('{% croppedUrlFor image, 600 %}')" data-img="{%  imageUrlFor image, 1200  %}" data-alt="{{image.alt}}" data-caption="{{image.caption}}">
-          <div class="absolute aspect-square transition-all duration-300 right-6 bottom-6 rounded-full bg-brand-secondary p-0 group-hover:p-4">
-            <svg viewBox="0 0 100 100" style="width: 140%; height: 140%; top: -32%; left: -24%" class="absolute scale-0 -rotate-12 overflow-visible transition-transform duration-300 group-hover:scale-100">
+          <div class="absolute aspect-square transition-all duration-300 right-6 bottom-6 rounded-full bg-brand-secondary outline-1 outline-offset-4 outline-brand-secondary outline-double p-0 group-hover:p-4">
+            <svg viewBox="0 0 100 100" style="width: 140%; height: 140%; top: -36%; left: -28%" class="absolute scale-0 -rotate-12 overflow-visible transition-transform duration-300 group-hover:scale-100">
               <defs>
                   <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
               </defs>
