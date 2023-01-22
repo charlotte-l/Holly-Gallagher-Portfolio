@@ -3,5 +3,5 @@
   to = "/"
   status = 200
 
-[build.environment]
+[context.production]
   NPM_FLAGS = "--force"
