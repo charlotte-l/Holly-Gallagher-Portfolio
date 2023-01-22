@@ -33,7 +33,7 @@
     {% endif %}
     <link rel="canonical" href="{{ site.url }}{{ page.url | url }}"/>
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/images/favicon.png" type="image/png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
     <link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="{{ theme.mainColor }}">
@@ -60,20 +60,23 @@
     <link rel="stylesheet" type="text/css" href="/styles/main.css"/>
     <style>
       :root {
-        --brand-primary: {{ theme.mainColor }};
-        --brand-secondary: {{theme.secondaryColor}};
-        --brand-body: {{theme.textColor}};
+        --brand-primary: {{ theme.heroBgColor }};
+        --brand-text: {{theme.heroTextColor}};
+        --brand-link: {{theme.heroLinkColor}};
+        --body-bg: {{ theme.bodyBgColor }};
+        --body-text: {{theme.bodyTextColor}};
+        --body-link: {{theme.bodyLinkColor}};
       }
     </style>
   </head>
   <body
-    class="h-full text-brand-body antialiased bg-repeat bg-center">
+    class="h-full antialiased bg-body-bg">
     <!-- skip to content -->
     <a href="#content" class="w-full block text-center text-black bg-gray-100 sr-only focus:not-sr-only">
       Skip to Content
     </a>
     {% block header %}
-      {% include "../_includes/header.njk" %}
+      {% include "../_includes/nav.njk" %}
     {% endblock %}
     <main id="content" {% if templateClass %} class="{{ templateClass }}" {% endif %} role="main">
       {{ content | safe }}

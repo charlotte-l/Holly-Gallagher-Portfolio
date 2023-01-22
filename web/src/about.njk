@@ -6,44 +6,51 @@ permalink: /about/
 tags:
   - nav
 order: 1
-templateClass: mt-10 mb-10
+templateClass:
 ---
 
-<div class="container mx-auto px-8">
-  <h1>About Holly</h1>
+{% set heading = title %}
+{% include "./_includes/header.njk" %}
 
-  <div class="text-3xl">
-    {{authors[0].bio | markdownify | safe }}
+<div class="bg-brand-primary text-brand-text">
+  <div class="container">
+    <div class="max-w-4xl py-8 text-2xl">
+      {{authors[0].bio | markdownify | safe }}
+    </div>
   </div>
+</div>
 
-  {% if authors[0].image.asset %}
-  </div>
+{% if authors[0].image.asset %}
+  <div class="w-full h-[50vh] bg-no-repeat bg-cover bg-center" style="background-image: url('{% imageUrlFor authors[0].image.asset, 1600 %}')"></div>
+{% endif %}
 
-  <div class="w-full h-96 my-20 bg-no-repeat bg-cover bg-center" style="background-image: url('{% imageUrlFor authors[0].image.asset, 1600 %}')"></div>
-
-  <div class="container mx-auto px-8">
-  {% endif %}
-
-  <section>
-    <h2>Key Experience</h2>
-    {{authors[0].key_experience | markdownify | safe }}
+<div class="container max-w-6xl py-24">
+  <section class="flex items-start gap-24">
+    <h2 class="mt-0 basis-1/3 diamonds">Key Experience</h2>
+    <div class="basis-2/3">
+      {{authors[0].key_experience | markdownify | safe }}
+    </div>
   </section>
-
-  <section>
-    <h2>Training and Support</h2>
-    {{authors[0].training_support | markdownify | safe }}
+  {% svg "squiggle", "h-6 mx-auto mt-24 mb-16 text-brand-link" %}
+  <section class="flex items-start gap-24 mt-24">
+    <h2 class="mt-0 basis-1/3 diamonds">Training and Support</h2>
+    <div class="basis-2/3">
+      {{authors[0].training_support | markdownify | safe }}
+    </div>
   </section>
-
-  <section>
-    <h2>Courses and Institutions</h2>
-    {{authors[0].courses_institutions | markdownify | safe }}
+  {% svg "squiggle", "h-6 mx-auto mt-24 mb-16 text-brand-link" %}
+  <section class="flex items-start gap-24 mt-24">
+    <h2 class="mt-0 basis-1/3 diamonds">Courses and Institutions</h2>
+    <div class="basis-2/3">
+      {{authors[0].courses_institutions | markdownify | safe }}
+    </div>
   </section>
-
-  <section class="mt-20 pt-48 pb-16 overflow-hidden">
-    <blockquote class="relative before:content-['“'] before:absolute before:top-full before:left-32 before:text-[100vh] before:leading-[0] before:font-serif before:opacity-20">
-      <p class="text-6xl leading-tight max-w-screen-lg mx-auto">Lorem ipsum <span class="text-brand-secondary">dolor sit amet</span>, consecteur adipiscing elit, ut lacullis <span class="text-brand-secondary">justo laoreet arcu</span>.</p>
-      <cite class="block text-3xl text-right mt-8">&mdash; Quote source</cite>
+</div>
+<div class="bg-brand-primary text-brand-text overflow-hidden">
+  <section class="container max-w-6xl mt-20 pt-40 pb-28">
+    <blockquote class="relative before:content-['“'] before:absolute before:top-4 before:-left-20 before:text-[40vh] before:leading-[0] before:font-serif before:opacity-10">
+      <p class="text-5xl leading-tight mx-auto">Holly takes the stories of <span class="text-brand-link">ordinary people</span> and <span class="text-brand-link">elevates</span> them to the level of the profound.</p>
+      <cite class="block text-2xl text-right mt-8">&mdash; Kieran Hurley</cite>
     </blockquote>
-    
   </section>
 </div>

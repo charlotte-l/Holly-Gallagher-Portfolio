@@ -1,15 +1,9 @@
 export default {
-  name: 'workshops',
+  name: 'engagement',
   type: 'document',
-  title: 'Workshops',
+  title: 'Engagement',
   __experimental_actions: ['update', /* 'create', 'delete', */ 'publish'],
   fields: [
-    {
-      name: 'title',
-      type: 'string',
-      title: 'Title',
-      description: 'The main heading on the page'
-    },
     {
       name: 'body',
       type: 'bodyPortableText',

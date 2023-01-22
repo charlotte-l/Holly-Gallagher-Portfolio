@@ -4,12 +4,15 @@ templateClass: mb-10
 ---
 
 <article class="overflow-hidden">
-  <div class="{% if post.mainImage.asset %}py-32 bg-no-repeat bg-cover bg-center{% endif %}" style="{% if post.mainImage.asset %}background-image: url('{%  imageUrlFor post.mainImage.asset, 900  %}'){% endif %}">
-    <div class="container mx-auto">
-      <h1 class="text-8xl leading-[1.15] max-w-2xl ml-auto pt-4 z-10 relative before:absolute before:bg-brand-primary before:-right-16 before:top-0 before:h-[125%] before:w-[120%] before:-z-10">{{ post.title | addNbsp | safe }}</h1>
+  <div class="{% if post.mainImage.asset %}pt-28 pb-48 bg-no-repeat bg-cover bg-center{% endif %}" style="{% if post.mainImage.asset %}background-image: url('{%  imageUrlFor post.mainImage.asset, 900  %}'){% endif %}">
+    <div class="container">
+      <h1 class="text-8xl leading-[1.15] text-brand-text max-w-2xl ml-auto mt-0 pt-6 pb-3 z-10 relative before:absolute before:bg-brand-primary before:-right-16 before:top-0 before:h-[115%] before:w-[120%] before:-z-10">
+        <span class="diamonds absolute left-0"></span>
+        {{ post.title | addNbsp | safe }}
+      </h1>
     </div>
   </div>
-  <div class="max-w-prose mx-auto mt-16">
+  <div class="container max-w-prose mt-16 min-h-[50vh]">
     {{ post.body | markdownify | safe }}
   </div>
 </article>

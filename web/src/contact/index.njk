@@ -1,0 +1,161 @@
+---
+layout: base.njk
+title: Contact
+navtitle: Contact
+permalink: /contact/
+tags:
+  - nav
+order: 5
+templateClass:
+---
+
+{% set heading = title %}
+{% include "../_includes/header.njk" %}
+<div class="container max-w-6xl py-24">
+  <div class="flex flex-row">
+    <div class="basis-5/12">
+      <h2 class="text-6xl after:content-none text-brand-link mt-0">Get in
+        touch</h2>
+      <p>
+        I'm always on the look out for new and inventive work so invite me along to a show, scratch or reading. I also accept
+        solicited and unsolicited script submissions. Or if you just fancy an initial chat about a project, drop me
+        a&nbsp;message!
+      </p>
+      <h3 class="text-4xl">Find me on social media</h3>
+      <div class="flex gap-10 mt-10">
+        <a class="social group" href="https://twitter.com/hollyrachael_">
+          <div class="relative aspect-square p-3 bg-brand-link text-black outline-1 outline-offset-4 outline-brand-link outline-double
+              rounded-full">
+            {% svg "icon-twitter", "w-8 h-8 fill-brand-text", "Twitter" %}
+            <svg
+              viewbox="0 0 100 100"
+              style="width: 175%; height: 175%; top: -37.5%; left: -37.5%"
+              class="absolute -z-10 scale-0 rotate-[60deg] overflow-visible transition-transform duration-300 group-hover:scale-100">
+              <defs>
+                <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"/>
+              </defs>
+              <text class="uppercase text-md fill-brand-link" letter-spacing="0">
+                <textPath xlink:href="#circle">
+                  Twitter
+                </textPath>
+              </text>
+            </svg>
+          </div>
+        </a>
+        <a class="social group" href="https://www.youtube.com/channel/UC09znLuZy6eMJI0DbKEHC-Q">
+          <div class="relative aspect-square p-3 bg-brand-link text-black outline-1 outline-offset-4 outline-brand-link outline-double
+              rounded-full">
+            {% svg "icon-youtube", "w-8 h-8 fill-brand-text", "Twitter" %}
+            <svg
+              viewbox="0 0 100 100"
+              style="width: 175%; height: 175%; top: -37.5%; left: -37.5%"
+              class="absolute -z-10 scale-0 rotate-[60deg] overflow-visible transition-transform duration-300 group-hover:scale-100">
+              <defs>
+                <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"/>
+              </defs>
+              <text class="uppercase text-md fill-brand-link" letter-spacing="0">
+                <textPath xlink:href="#circle">
+                  YouTube
+                </textPath>
+              </text>
+            </svg>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="basis-5/12 ml-auto">
+      <p class="text-sm">All fields marked with * are required.</p>
+      <form name="contact" method="POST" data-netlify="true" action="/connect/success/" class="grid grid-cols-1 gap-10 mt-10">
+        <label class="block" for="name">
+          <span class="">Name *</span>
+          <input
+            type="text"
+            class="mt-0 block w-full px-0.5 pb-0 !bg-transparent border-0 border-b-2 border-brand-link focus:ring-0
+              focus:border-brand-link"
+            placeholder=""
+            name="name"
+            id="name"
+            autocomplete="name"
+            required
+          />
+        </label>
+        <label class="block" for="email">
+          <span class="">Email *</span>
+          <input
+            type="email"
+            class="mt-0 block w-full px-0.5 pb-0 !bg-transparent border-0 border-b-2 border-brand-link focus:ring-0
+              focus:border-brand-link"
+            name="email"
+            id="email"
+            autocomplete="email"
+            pattern="^([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x22([^\x0d\x22\x5c\x80-\xff]|\x5c[\x00-\x7f])*\x22))*\x40([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d)(\x2e([^\x00-\x20\x22\x28\x29\x2c\x2e\x3a-\x3c\x3e\x40\x5b-\x5d\x7f-\xff]+|\x5b([^\x0d\x5b-\x5d\x80-\xff]|\x5c[\x00-\x7f])*\x5d))*(\.\w{2,})+$"
+            required
+          />
+        </label>
+        <label class="block" for="message">
+          <span class="">Message *</span>
+          <textarea
+            class="mt-0 block w-full px-0.5 pb-0 bg-transparent border-0 border-b-2 border-brand-link focus:ring-0
+              focus:border-brand-link"
+            rows="3"
+            name="message"
+            id="message"
+            required
+          >
+          </textarea>
+        </label>
+        <button type="submit" class="rounded-full bg-brand-link text-black px-4 py-1 justify-self-end">
+          Send message
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="mt-24">
+    <div class="text-center bg-brand-primary text-brand-text max-w-4xl mx-auto px-10 py-12 outline-1 -outline-offset-8
+        outline-brand-link outline-double">
+      <p class="font-bold">Sign up for email updates</p>
+      <p class="mt-4">
+        Be among the first to hear about new shows, workshops, events and more! I send approximately one email a month.
+      </p>
+      <!-- Begin Mailchimp Signup Form -->
+      <div id="mc_embed_signup">
+        <form
+          action="https://list-manage.us1.list-manage.com/subscribe/post?u=7d5d4a2f2efe3fe2b6ecc3c23&amp;id=938521773d"
+          method="post"
+          id="mc-embedded-subscribe-form"
+          name="mc-embedded-subscribe-form"
+          class="flex flex-row items-end gap-4"
+          target="_blank"
+          novalidate>
+          <label for="mce-EMAIL">
+            <span>Email Address</span>
+            <input
+              type="email"
+              value=""
+              name="EMAIL"
+              class="mt-0 block w-full px-0.5 !bg-transparent border-0 border-b-2 border-brand-link focus:ring-0
+                focus:border-brand-link"
+              id="mce-EMAIL"/>
+          </label>
+          <!-- honeypot field for bot signups-->
+          <input
+            type="text"
+            name="b_7d5d4a2f2efe3fe2b6ecc3c23_938521773d"
+            tabindex="-1"
+            value=""
+            style="position: absolute; left: -5000px"
+            aria-hidden="true"/>
+          <button
+            type="submit"
+            value="Subscribe"
+            name="subscribe"
+            id="mc-embedded-subscribe"
+            class="rounded-full bg-brand-link text-black px-4 py-1">
+            Subscribe
+          </button>
+        </form>
+      </div>
+      <!--End mc_embed_signup-->
+    </div>
+  </div>
+</div>

@@ -1,8 +1,12 @@
-<footer class="container mx-auto flex justify-between px-8 mt-20 mb-5">
-    <span>© 2022 Holly Gallagher. All rights reserved.</span>
-    <div class="flex gap-6">
-        <a href="https://twitter.com/hollyrachael_">{% svg "icon-twitter", "h-8 w-8 fill-white hover:fill-brand-secondary transition-colors duration-300" %}</a>
-        <a href="https://www.youtube.com/channel/UC09znLuZy6eMJI0DbKEHC-Q">{% svg "icon-youtube", "h-8 w-8 fill-white hover:fill-brand-secondary transition-colors duration-300" %}</a>
-        <a href="/connect/">{% svg "icon-email", "h-8 w-8 fill-white hover:fill-brand-secondary transition-colors duration-300" %}</a>
+{% set iconClasses = "h-7 w-7 transition-colors duration-300 fill-brand-text hover:fill-brand-link" %}
+
+<footer class="bg-brand-primary text-brand-text">
+    <div class="container py-5 flex justify-between items-center">
+        <span>© {{ currentYear }} Holly Gallagher. All rights reserved.</span>
+        <div class="flex gap-8">
+            <a class="social" href="https://twitter.com/hollyrachael_">{% svg "icon-twitter", iconClasses, "Twitter" %}</a>
+            <a class="social" href="https://www.youtube.com/channel/UC09znLuZy6eMJI0DbKEHC-Q">{% svg "icon-youtube", iconClasses, "YouTube" %}</a>
+            <a class="social" href="/connect/">{% svg "icon-email", iconClasses, "Contact Holly" %}</a>
+        </div>
     </div>
 </footer>

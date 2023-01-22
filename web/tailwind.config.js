@@ -6,8 +6,11 @@ module.exports = {
   theme: {
     colors: {
       "brand-primary": 'var(--brand-primary)',
-      "brand-secondary": 'var(--brand-secondary)',
-      "brand-body": 'var(--brand-body)',
+      "brand-text": 'var(--brand-text)',
+      "brand-link": 'var(--brand-link)',
+      "body-bg": 'var(--body-bg)',
+      "body-text": 'var(--body-text)',
+      "body-link": 'var(--body-link)',
       transparent: "transparent",
       current: "currentColor",
       black: colors.black,
@@ -21,6 +24,10 @@ module.exports = {
       body: ['"Open Sans"', ...defaultTheme.fontFamily.sans],
       display: ['"Frente H1"', ...defaultTheme.fontFamily.sans],
       serif: [...defaultTheme.fontFamily.serif],
+    },
+    container: {
+      padding: '2rem',
+      center: true,
     },
     extend: {
       animation: {
@@ -39,7 +46,10 @@ module.exports = {
       },
       maxWidth: {
         'prose': '75ch',
-      }
+      },
+      gridTemplateColumns: {
+        'postsList': '1fr 45ch',
+      },
     }
   },
   plugins: [

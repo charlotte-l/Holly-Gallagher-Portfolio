@@ -1,25 +1,15 @@
 {% for post in postslist %}
   {% set currentPost = post.data.post %}
-  <div class="relative my-28">
-    <a class="stretched absolute w-full h-full after:absolute after:inset-0 after:z-[1]" href="{{ post.url | url }}"></a>
-    <div class="grid grid-cols-2 gap-x-32">
-      <div class="flex flex-col justify-center">
-        <a href="{{ post.url | url }}" class="block w-fit font-display font-bold text-4xl tracking-wider z-10">
-          {{ currentPost.title | addNbsp | safe }}
-        </a>
-        <time class="block font-light text-sm mt-2 mb-4" datetime="{{ currentPost.publishedAt }}">{{ currentPost.publishedAt | readableDate }}</time>
-        {% if currentPost.excerpt %}
-          {{ currentPost.excerpt | markdownify | safe }}
-        {% else %}
-          {{ currentPost.body | markdownify | excerpt }}
-        {% endif %}
-      </div>
+  <div class="relative my-32">
+    <div class="grid grid-cols-postsList items-start">
       <div class="relative">
         {% if currentPost.mainImage.asset %}
-          <img class="rounded-[12.5rem]" src="{% croppedUrlFor currentPost.mainImage, 500, 275 %}" alt="{{ currentPost.mainImage.alt }}">
+          <a class="stretched" href="{{ post.url | url }}">
+            <img class="rounded-[7.5rem] w-full" src="{% croppedUrlFor currentPost.mainImage, 350, 450 %}" alt="{{ currentPost.mainImage.alt }}">
+          </a>
           <a href="{{ post.url | url }}">
-            <div class="absolute aspect-square -bottom-4 -left-4 p-8 bg-brand-secondary text-black outline-1 outline-offset-4 outline-brand-secondary outline-double rounded-full">
-              <svg viewBox="0 0 100 100" style="width: 90%; height: 90%; top: 5%; left: 5%" class="absolute z-10 animate-spin-slow pause hover:play">
+            <div class="absolute aspect-square -bottom-6 -right-6 p-12 bg-brand-link text-black outline-1 outline-offset-4 outline-brand-link outline-double rounded-full">
+              <svg viewBox="0 0 100 100" style="width: 90%; height: 90%; top: 5%; left: 5%" class="absolute z-10 motion-safe:animate-spin-slow motion-safe:pause motion-safe:hover:play">
                 <defs>
                   <path id="circle" d=" M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"/>
                 </defs>
@@ -35,6 +25,24 @@
         {% else %}
           <code>{{ post.url }}</code>
         {% endif %}
+      </div>
+      <div class="relative bg-brand-primary text-brand-text z-10 px-10 py-12 mt-24 -ml-20 outline-1 -outline-offset-8 outline-brand-link outline-double">
+        <div class="font-light text-sm mb-2">
+          {% for category in currentPost.categories %}
+            <a class="" href="/updates/{{ category.slug | slug }}">{{ category.title }}</a>{% if not loop.last %} / {% endif %}
+          {% endfor %}
+        </div>
+        <a href="{{ post.url | url }}" class="font-display font-bold text-4xl tracking-wider z-10">
+          {{ currentPost.title | addNbsp | safe }}
+        </a>
+        <time class="block font-light text-sm mt-2 mb-4" datetime="{{ currentPost.publishedAt }}">{{ currentPost.publishedAt | readableDate }}</time>
+        {% if currentPost.excerpt %}
+          {{ currentPost.excerpt | markdownify | safe }}
+        {% else %}
+          {{ currentPost.body | markdownify | excerpt }}
+        {% endif %}
+        {% svg "blob", "absolute h-4 w-4 right-6 bottom-4 rotate-6 text-white" %}
+        {% svg "squiggle", "absolute h-10 w-36 rotate-[150deg] -bottom-4 right-6 text-brand-link" %}
       </div>
     </div>
   </div>

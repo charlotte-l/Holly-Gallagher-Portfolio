@@ -5,19 +5,19 @@ templateClass: mb-10
 
 <article class="overflow-hidden">
   <div class="{% if project.mainImage.asset %}py-32 bg-no-repeat bg-cover bg-center{% endif %}" style="{% if project.mainImage.asset %}background-image: url('{%  imageUrlFor project.mainImage.asset, 900  %}'){% endif %}">
-    <div class="container mx-auto">
-      <h1 class="text-8xl leading-[1.15] max-w-2xl ml-auto pt-4 z-10 relative before:absolute before:bg-brand-primary before:-right-16 before:top-0 before:h-[125%] before:w-[120%] before:-z-10">{{ project.title | addNbsp | safe }}</h1>
+    <div class="container pr-8">
+      <h1 class="text-8xl leading-[1.15] text-brand-text max-w-2xl ml-auto pt-4 z-10 relative before:absolute before:bg-brand-primary before:-right-16 before:top-0 before:h-[125%] before:w-[120%] before:-z-10">{{ project.title | addNbsp | safe }}</h1>
     </div>
   </div>
 
   {% if project.excerpt %}
-    <div class="container mx-auto mt-16 text-3xl">
+    <div class="container mt-16 text-3xl">
       {{ project.excerpt | markdownify | safe }}
     </div>
   {% endif %}
 
   {% if project.credits or project.description %}
-  <div class="container mx-auto mt-16">
+  <div class="container mt-16">
     <div class="flex gap-10">
       <div class="basis-1/5">
         {{ project.credits | markdownify | safe }}
@@ -31,10 +31,10 @@ templateClass: mb-10
 
   {% if project.imageGallery.length > 4 %}
     <div class="embla overflow-hidden mt-16 mb-32">
-      <button class="embla__prev aspect-square p-8 bg-brand-secondary text-black rounded-full  mb-8" aria-label="Previous slide">
+      <button class="embla__prev aspect-square p-8 bg-brand-link text-black rounded-full  mb-8" aria-label="Previous slide">
         <span class="inline-block text-6xl align-[-1rem] h-0 leading-[0]">&#8592;</span>
       </button>
-      <button class="embla__next aspect-square p-8 bg-brand-secondary text-black rounded-full ml-6 mb-8" aria-label="Next slide">
+      <button class="embla__next aspect-square p-8 bg-brand-link text-black rounded-full ml-6 mb-8" aria-label="Next slide">
         <span class="inline-block text-6xl align-[-1rem] h-0 leading-[0]">&#8594;</span>
       </button>
 
@@ -42,12 +42,12 @@ templateClass: mb-10
         <div class="grid grid-rows-1 grid-cols-4 gap-24">
           {% for image in project.imageGallery %}
             <div class="lightbox cursor-pointer group relative basis-1/4 aspect-[1/1.5] rounded-[15rem] bg-no-repeat bg-cover bg-center max-w-[320px]" style="background-image: url('{% croppedUrlFor image, 600 %}')" data-img="{%  imageUrlFor image, 1200  %}" data-alt="{{image.alt}}" data-caption="{{image.caption}}">
-              <div class="absolute aspect-square transition-all duration-300 right-6 bottom-6 rounded-full bg-brand-secondary outline-1 outline-offset-4 outline-brand-secondary outline-double p-0 group-hover:p-4">
+              <div class="absolute aspect-square transition-all duration-300 right-6 bottom-6 rounded-full bg-brand-link outline-1 outline-offset-4 outline-brand-link outline-double p-0 group-hover:p-4">
                 <svg viewBox="0 0 100 100" style="width: 140%; height: 140%; top: -36%; left: -28%" class="absolute scale-0 -rotate-12 overflow-visible transition-transform duration-300 group-hover:scale-100">
                   <defs>
                       <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
                   </defs>
-                  <text class="text-3xl fill-brand-secondary" letter-spacing="0">
+                  <text class="text-3xl fill-brand-link" letter-spacing="0">
                       <textPath xlink:href="#circle">
                         Expand
                       </textPath>
@@ -61,21 +61,21 @@ templateClass: mb-10
       </div>
     </div>
   {% elseif project.imageGallery.length > 0 %}
-    <div class="container mx-auto flex justify-evenly gap-24 mt-16 mb-32">
+    <div class="container flex justify-evenly gap-24 mt-16 mb-32">
       {% for image in project.imageGallery %}
         <div class="lightbox cursor-pointer group relative basis-1/4 aspect-[1/1.5] rounded-[15rem] bg-no-repeat bg-cover bg-center max-w-[320px]" style="background-image: url('{% croppedUrlFor image, 600 %}')" data-img="{%  imageUrlFor image, 1200  %}" data-alt="{{image.alt}}" data-caption="{{image.caption}}">
-          <div class="absolute aspect-square transition-all duration-300 right-6 bottom-6 rounded-full bg-brand-secondary outline-1 outline-offset-4 outline-brand-secondary outline-double p-0 group-hover:p-4">
+          <div class="absolute aspect-square transition-all duration-300 right-6 bottom-6 rounded-full bg-brand-link outline-1 outline-offset-4 outline-brand-link outline-double p-0 group-hover:p-4 motion-safe:animate-heartbeat motion-safe:play motion-safe:group-hover:pause">
             <svg viewBox="0 0 100 100" style="width: 140%; height: 140%; top: -36%; left: -28%" class="absolute scale-0 -rotate-12 overflow-visible transition-transform duration-300 group-hover:scale-100">
               <defs>
                   <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
               </defs>
-              <text class="text-3xl fill-brand-secondary" letter-spacing="0">
+              <text class="text-3xl fill-brand-link" letter-spacing="0">
                   <textPath xlink:href="#circle">
                     Expand
                   </textPath>
               </text>
             </svg>
-            <span class="block text-5xl align-super h-0 leading-[0.75] text-black transition-opacity delay-100 scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100">&#8689;</span>
+            <span class="block text-5xl align-super h-0 leading-[0.75] text-black transition-opacity delay-100 scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 pointer-events-none">&#8689;</span>
           </div>
         </div>
       {% endfor %}
@@ -134,8 +134,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const imgCaption = targetImg.dataset.caption;
 
     basicLightbox.create(`
-      <div class="container px-8 flex">
-        <div class="bg-brand-primary grow-1 shrink-0 basis-full max-w-xs p-6 ${!imgCaption && 'hidden'}">
+      <div class="container flex">
+        <div class="bg-brand-primary text-brand-text grow-1 shrink-0 basis-full max-w-xs p-6 ${!imgCaption && 'hidden'}">
           <p>${imgCaption}</p>
         </div>
         <div class="">

@@ -1,14 +1,15 @@
 ---
 layout: base.njk
+title: Archive
 navtitle: Archive
 permalink: /updates/archive/
-templateClass: mt-10 mb-10
+templateClass:
 ---
 
-<div class="container mx-auto px-8">
-  <h1>Archive</h1>
+{% set heading = title %}
+{% include "../_includes/header.njk" %}
 
+<div class="container max-w-5xl my-24">
   {% set postslist = collections.myPosts %}
   {% include "postslist-archive.njk" %}
-
 </div>

@@ -1,0 +1,17 @@
+---
+layout: base.njk
+title: Engagement
+navtitle: Engagement
+permalink: /engagement/
+tags:
+  - nav
+order: 3
+templateClass:
+---
+
+{% set heading = title %}
+{% include "./_includes/header.njk" %}
+
+<div class="container my-24 max-w-4xl min-h-[50vh]">
+  {{ engagement.body | markdownify | safe }}
+</div>

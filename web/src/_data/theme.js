@@ -4,9 +4,12 @@ const client = require('../utils/sanityClient.js')
 async function getTheme() {
   return await client.fetch(groq`
     *[_id == "siteSettings"]{
-      mainColor,
-      secondaryColor,
-      textColor,
+      heroBgColor,
+      heroTextColor,
+      heroLinkColor,
+      bodyBgColor,
+      bodyTextColor,
+      bodyLinkColor
     }[0]
   `);
 }

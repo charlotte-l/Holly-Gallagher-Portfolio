@@ -33,9 +33,9 @@ async function getCategories() {
       body,
       publishedAt,
       excerpt,
-      "categories": categories[]{
-        "title": ^->title,
-        "slug": ^->slug.current
+      "categories": categories[]->{
+        "title": title,
+        "slug": slug.current
       }
     },
     "projects": *[_type == "project" && references(^._id)]{
@@ -44,9 +44,9 @@ async function getCategories() {
       mainImage,
       body,
       excerpt,
-      "categories": categories[]{
-        "title": ^->title,
-        "slug": ^->slug.current
+      "categories": categories[]->{
+        "title": title,
+        "slug": slug.current
       }
     },
   }`;

@@ -9,7 +9,6 @@
       "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
     line-height: 1.75;
     letter-spacing: 0.05vw;
-    background-image: url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='a' patternUnits='userSpaceOnUse' width='25' height='25' patternTransform='scale(0.75) rotate(0)'%3E%3Crect x='0' y='0' width='100%25' height='100%25' fill='hsla(236, 40%25, 21%25, 1)'/%3E%3Cpath d='M25 12.5l-8.828 3.672L12.5 25l-3.672-8.828L0 12.5l8.828-3.672L12.5 0l3.672 8.828L25 12.5' stroke-width='1' stroke='none' fill='hsla(236, 40%25, 20.5%25, 1)'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='800%25' height='800%25' transform='translate(0,0)' fill='url(%23a)'/%3E%3C/svg%3E");
   }
 
   .lazy-img {
@@ -28,11 +27,35 @@
   .bar::after {
     content: "";
     position: absolute;
-    bottom: -1.0rem;
-    right: 0;
-    width: 6rem;
-    height: 0.33rem;
-    @apply bg-brand-secondary;
+    bottom: -1rem;
+    right: 0.5rem;
+    width: 11.5rem;
+    height: 1.25rem;
+    background-color: var(--brand-link);
+    mask-image: url('/images/svg/bolt-long.svg');
+    mask-repeat: no-repeat;
+    mask-size: cover;
+  }
+
+  .bar.bar-center::after {
+    right: calc(50% - 5.75rem);
+  }
+
+  .diamonds {
+    position: relative;
+  }
+
+  .diamonds::after {
+    content: "";
+    position: absolute;
+    top: -3.25rem;
+    left: -2.5rem;
+    width: 3rem;
+    height: 5.5rem;
+    background-color: var(--brand-link);
+    mask-image: url('/images/svg/diamonds.svg');
+    mask-repeat: no-repeat;
+    mask-size: cover;
   }
 
   p {
@@ -53,23 +76,19 @@
   }
 
   h1 {
-    margin-top: 0;
-    margin-bottom: 5.58rem;
+    margin: 1.58rem 0;
     font-size: 11.089rem;
     text-align: right;
     @apply bar;
-    text-shadow: 5px 5px 0px var(--brand-secondary);
+    text-shadow: 5px 5px 0px var(--brand-link);
   }
 
   article h1 {
-    text-shadow: 3px 3px 0px var(--brand-secondary);
+    text-shadow: 3px 3px 0px var(--brand-link);
   }
 
   h2 {
-    font-size: 6.854rem;
-    margin-bottom: 2.88rem;
-    text-align: right;
-    @apply bar;
+    font-size: 5.054rem;
   }
 
   h3 {
@@ -84,22 +103,66 @@
     font-size: 1.618rem;
   }
 
+  ol, ul {
+    list-style: initial;
+    padding: revert;
+  }
+
+  article ol,
+  article ul {
+    margin: revert;
+  }
+
   small,
   .text_small {
     font-size: 0.618rem;
   }
 
-  :where(header, main) a:not(.brand, .stretched, .badge) {
-    @apply text-brand-secondary bg-no-repeat;
-    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
-                      linear-gradient(var(--brand-secondary), var(--brand-secondary));
-    background-size: 100% 1px, 0 1px;
-    background-position: 100% 100%, 0 100%;
-    transition: background-size 0.3s linear, background-position 0.3s linear;
+  table {
+    border-collapse: collapse;
+    width: 100%;
   }
 
-  :where(header, main) a:not(.brand, .stretched, .badge):where(:hover, :focus-visible),
-  li[aria-current="page"] a {
+  table td {
+    padding: 0.5rem 0.75rem;
+    vertical-align: middle;
+  }
+  
+  table td:first-of-type {
+    padding-inline-start: 0;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    :where(.bg-brand-primary, .bg-body-bg) a:not(.stretched, .badge) {
+      transition: color .2s ease-in-out, background-size 0.5s cubic-bezier(.5,.15,0,1), background-position 0.5s cubic-bezier(.5,.15,0,1);
+    }
+  }
+
+  .bg-body-bg a {
+    @apply text-body-link bg-no-repeat;
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
+                      linear-gradient(var(--body-link), var(--body-link));
+    background-size: 100% 1px, 0 1px;
+    background-position: 100% 100%, 0 100%;
+  }
+
+  .bg-body-bg a:not(.stretched, .badge, .social):where(:hover, :focus-visible) {
+    @apply text-body-link;
+    background-size: 0 1px, 100% 1px;
+    background-position: 100% 100%, 0 100%;
+  }
+
+  .bg-brand-primary a:not(.stretched, .badge, .social) {
+    @apply text-brand-text bg-no-repeat;
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0)),
+                      linear-gradient(var(--brand-link), var(--brand-link));
+    background-size: 100% 1px, 0 1px;
+    background-position: 100% 100%, 0 100%;
+  }
+
+ .bg-brand-primary a:not(.stretched, .badge, .social):where(:hover, :focus-visible),
+ .bg-brand-primary li[aria-current="page"] a {
+    @apply text-brand-link;
     background-size: 0 1px, 100% 1px;
     background-position: 100% 100%, 0 100%;
   }

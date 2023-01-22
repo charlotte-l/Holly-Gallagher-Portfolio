@@ -1,0 +1,12 @@
+<header class="bg-brand-primary">
+    <div class="container py-5 flex justify-between items-center">
+        <a class="brand" href="{{ '/' | url }}"><span class="block font-display font-bold text-3xl tracking-wider text-brand-text">{{metadata.title}}</span></a>
+        <ul class="list-none flex gap-8" role="nav">
+            {%- for nav in collections.nav | sort(false, false, 'data.order') -%}
+            <li class="nav-item"{% if nav.url == page.url %} aria-current="page"{% endif %}>
+                <a href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a>
+            </li>
+            {%- endfor -%}
+        </ul>
+    </div>
+</header>

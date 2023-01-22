@@ -4,7 +4,7 @@ import { MdLightbulb } from "react-icons/md";
 import { MdPerson } from "react-icons/md";
 
 const hiddenDocTypes = listItem =>
-  !['category', 'author', 'post', 'project', 'siteSettings', 'workshops'].includes(listItem.getId())
+  !['category', 'author', 'post', 'project', 'siteSettings', 'engagement'].includes(listItem.getId())
 
 export default () =>
   S.list()
@@ -20,13 +20,13 @@ export default () =>
             .documentId('siteSettings')
         ),
       S.listItem()
-        .title('Workshops')
+        .title('Engagement')
         .icon(MdLightbulb)
         .child(
           S.editor()
-            .id('workshops')
-            .schemaType('workshops')
-            .documentId('workshops')
+            .id('engagement')
+            .schemaType('engagement')
+            .documentId('engagement')
       ),
       S.listItem()
         .title('Profile')

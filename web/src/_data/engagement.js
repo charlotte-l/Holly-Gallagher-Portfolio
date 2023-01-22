@@ -3,10 +3,10 @@ const client = require("../utils/sanityClient");
 const BlocksToMarkdown = require("@sanity/block-content-to-markdown");
 const serializers = require("../utils/serializers");
 
-function parseBody(workshop) {
+function parseBody(content) {
   return {
-    ...workshop,
-    body: BlocksToMarkdown(workshop.body, { serializers, ...client.config() }),
+    ...content,
+    body: BlocksToMarkdown(content.body, { serializers, ...client.config() }),
   };
 }
 
@@ -14,13 +14,13 @@ module.exports = async function () {
   const res = await client
     .fetch(
       groq`
-    *[_id == "workshops"]{
+    *[_id == "engagement"]{
       ...,
     }[0]
   `
     )
     .catch((err) => console.error(err));
 
-  const workshops = parseBody(res);
-  return workshops;
+  const engagement = parseBody(res);
+  return engagement;
 };

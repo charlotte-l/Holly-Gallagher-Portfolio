@@ -1,16 +1,18 @@
 ---
 layout: base.njk
+title: Projects
 navtitle: Projects
 permalink: /projects/
 tags:
   - nav
 order: 2
-templateClass: mt-10 mb-10
+templateClass:
 ---
 
-<div class="container mx-auto px-8">
-  <h1>Projects</h1>
+{% set heading = title %}
+{% include "./_includes/header.njk" %}
 
+<div class="container my-24">
   {% set projectslist = collections.myProjects %}
   {% include "projectslist.njk" %}
 </div>

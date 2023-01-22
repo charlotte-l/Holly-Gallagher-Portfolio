@@ -10,7 +10,7 @@ import category from './documents/category'
 import post from './documents/post'
 import project from './documents/project'
 import siteSettings from './documents/siteSettings'
-import workshops from './documents/workshops'
+import engagement from './documents/engagement'
 
 // Object types
 import bodyPortableText from './objects/bodyPortableText'
@@ -27,7 +27,7 @@ export default createSchema({
   name: 'default',
   types: schemaTypes.concat([
     siteSettings,
-    workshops,
+    engagement,
     post,
     project,
     category,
