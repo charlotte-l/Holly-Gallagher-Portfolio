@@ -1,12 +1,28 @@
 <header class="bg-brand-primary">
     <div class="container py-5 flex justify-between items-center">
         <a class="brand" href="{{ '/' | url }}"><span class="block font-display font-bold text-3xl tracking-wider text-brand-text">{{metadata.title}}</span></a>
-        <ul class="list-none flex gap-8" role="nav">
-            {%- for nav in collections.nav | sort(false, false, 'data.order') -%}
-            <li class="nav-item"{% if nav.url == page.url %} aria-current="page"{% endif %}>
-                <a href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a>
-            </li>
-            {%- endfor -%}
-        </ul>
+        <nav>
+            <ul class="list-none flex gap-10">
+                {%- for nav in collections.nav | sort(false, false, 'data.order') -%}
+                <li class="nav-item relative{% if nav.data.children %} group{% endif %}"{% if (nav.url == page.url) and (not nav.data.children) %} aria-current="page"{% endif %}>
+                    {% if nav.data.children %}
+                        <button class="text-brand-text" aria-haspopup="true" aria-controls="{{nav.data.navtitle | slugify }}-dropdown">
+                            {{ nav.data.navtitle }}&nbsp;
+                            <span class="text-sm align-text-top inline-block transition-all group-hover:-rotate-180 group-focus-within:-rotate-180">↓</span>
+                        </button>
+                        <ul id="{{nav.data.navtitle | slugify}}-dropdown" class="list-none p-0 absolute top-8 w-max transition-all h-0 overflow-hidden group-hover:h-24 group-focus-within:h-24">
+                        {%- for key, val in nav.data.children -%}
+                            <li class="nav-item{% if not loop.first %} pt-1{% endif %}"{% if val.permalink | url == page.url %} aria-current="page"{% endif %}>
+                                <a href="{{val.permalink | url}}">{{val.navtitle}}</a>
+                            </li>
+                        {%- endfor -%}
+                        </ul>
+                    {% else %}
+                        <a href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a>
+                    {% endif %}
+                </li>
+                {%- endfor -%}
+            </ul>
+        </nav>
     </div>
 </header>

@@ -4,6 +4,7 @@ const BlocksToMarkdown = require("@sanity/block-content-to-markdown");
 const serializers = require("../utils/serializers");
 
 function parseBody(content) {
+  if (!content) {return null};
   return {
     ...content,
     body: BlocksToMarkdown(content.body, { serializers, ...client.config() }),

@@ -13,5 +13,7 @@ templateClass:
 {% include "./_includes/header.njk" %}
 
 <div class="container my-24 max-w-4xl min-h-[50vh]">
-  {{ engagement.body | markdownify | safe }}
+  {% if engagement.body %}
+    {{ engagement.body | markdownify | safe }}
+  {% endif %}
 </div>

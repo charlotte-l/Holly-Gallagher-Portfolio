@@ -1,0 +1,15 @@
+---
+layout: base.njk
+title: Projects
+permalink: /projects/all/
+tags:
+templateClass:
+---
+
+{% set heading = title %}
+{% include "../_includes/header.njk" %}
+
+<div class="container my-24">
+  {% set projectslist = collections.myProjects %}
+  {% include "projectslist.njk" %}
+</div>

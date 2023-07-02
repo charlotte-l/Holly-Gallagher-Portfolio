@@ -1,20 +1,24 @@
+{% set metaTitle %}
+  {{ renderData.title or title or metadata.title }}{% if page.url !== '/' %} | Holly Gallagher{% endif %}
+{% endset %}
+
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ renderData.title or title or metadata.title }}</title>
+    <title>{{metaTitle}}</title>
 
     <link rel="preload" as="font" type="font/woff2" href="{{ site.url }}/styles/fonts/FrenteH1-Regular-subset.woff2" crossorigin>
     <link rel="preload" as="font" type="font/ttf" href="{{ site.url }}/styles/fonts/OpenSans-Variable.ttf" crossorigin>
 
-    <meta name="title" content="{{ renderData.title or title or metadata.title }}">
+    <meta name="title" content="{{metaTitle}}">
     <meta name="Description" content="{{ renderData.description or description or metadata.description }}">
     <meta
     name="robots" content="follow, index"/> <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ page.url | url }}">
-    <meta property="og:title" content="{{ metadata.title | safe }}">
+    <meta property="og:title" content="{{metaTitle}}">
     <meta property="og:description" content="{{ metadata.description | safe }}">
     {% if mainImage and mainImage.asset %}
       <meta property="og:image" content="{% croppedUrlFor currentPost.mainImage, 1200, 630 %}">
@@ -24,7 +28,7 @@
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ page.url | url }}">
-    <meta property="twitter:title" content="{{ metadata.title | safe }}">
+    <meta property="twitter:title" content="{{metaTitle}}">
     <meta property="twitter:description" content="{{ metadata.description | safe }}">
     {% if mainImage and mainImage.asset %}
       <meta property="twitter:image" content="{% croppedUrlFor currentPost.mainImage, 1200, 630 %}">
@@ -60,12 +64,12 @@
     <link rel="stylesheet" type="text/css" href="/styles/main.css"/>
     <style>
       :root {
-        --brand-primary: {{ theme.heroBgColor }};
-        --brand-text: {{theme.heroTextColor}};
-        --brand-link: {{theme.heroLinkColor}};
-        --body-bg: {{ theme.bodyBgColor }};
-        --body-text: {{theme.bodyTextColor}};
-        --body-link: {{theme.bodyLinkColor}};
+        --brand-primary: {{ theme.heroBgColor.hex }};
+        --brand-text: {{ theme.heroTextColor.hex }};
+        --brand-link: {{ theme.heroLinkColor.hex }};
+        --body-bg: {{ theme.bodyBgColor.hex }};
+        --body-text: {{ theme.bodyTextColor.hex }};
+        --body-link: {{ theme.bodyLinkColor.hex }};
       }
     </style>
   </head>

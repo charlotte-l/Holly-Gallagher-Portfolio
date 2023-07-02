@@ -61,6 +61,10 @@ module.exports = function (eleventyConfig) {
     return urlFor(image).width(width).height(height).auto("format");
   });
 
+  eleventyConfig.addFilter("dump", (obj) => {
+    return util.inspect(obj);
+  });
+
   eleventyConfig.addNunjucksGlobal("currentYear", new Date().getFullYear());
 
   eleventyConfig.addNunjucksAsyncFilter("jsmin", filters.jsmin);

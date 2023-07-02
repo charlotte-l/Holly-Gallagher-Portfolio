@@ -6,11 +6,19 @@ permalink: /projects/
 tags:
   - nav
 order: 2
+childnav: 'test'
+children:
+  featured:
+    navtitle: Featured work
+    permalink: /projects/
+  all:
+    navtitle: All work
+    permalink: /projects/all/
 templateClass:
 ---
 
 {% set heading = title %}
-{% include "./_includes/header.njk" %}
+{% include "../_includes/header.njk" %}
 
 <div class="container my-24">
   {% set projectslist = collections.myProjects %}

@@ -1,5 +1,3 @@
-import {format, parseISO} from 'date-fns'
-
 export default {
   name: 'post',
   type: 'document',
