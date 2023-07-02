@@ -14,16 +14,15 @@ templateClass:
 <div class="container max-w-6xl py-24">
   <div class="flex flex-row">
     <div class="basis-5/12">
-      <h2 class="text-6xl after:content-none text-brand-link mt-0">Get in
-        touch</h2>
-      <p>
+      <h2 class="text-6xl leading-[1.3] mt-0 w-fit bar">Get in touch</h2>
+      <p class="mt-10">
         I'm always on the look out for new and inventive work so invite me along to a show, scratch or reading. I also accept
         solicited and unsolicited script submissions. Or if you just fancy an initial chat about a project, drop me
         a&nbsp;message!
       </p>
       <h3 class="text-4xl">Find me on social media</h3>
       <div class="flex gap-10 mt-10">
-        <a class="social group" href="https://twitter.com/hollyrachael_">
+        <a class="social group" href="https://twitter.com/hollyrachael_" target="_blank" rel="noopener noreferrer">
           <div class="relative aspect-square p-3 bg-brand-link text-black outline-1 outline-offset-4 outline-brand-link outline-double
               rounded-full">
             {% svg "icon-twitter", "w-8 h-8 fill-brand-text", "Twitter" %}
@@ -42,7 +41,7 @@ templateClass:
             </svg>
           </div>
         </a>
-        <a class="social group" href="https://www.youtube.com/channel/UC09znLuZy6eMJI0DbKEHC-Q">
+        <a class="social group" href="https://www.youtube.com/channel/UC09znLuZy6eMJI0DbKEHC-Q" target="_blank" rel="noopener noreferrer">
           <div class="relative aspect-square p-3 bg-brand-link text-black outline-1 outline-offset-4 outline-brand-link outline-double
               rounded-full">
             {% svg "icon-youtube", "w-8 h-8 fill-brand-text", "Twitter" %}
@@ -65,7 +64,7 @@ templateClass:
     </div>
     <div class="basis-5/12 ml-auto">
       <p class="text-sm">All fields marked with * are required.</p>
-      <form name="contact" method="POST" data-netlify="true" action="/connect/success/" class="grid grid-cols-1 gap-10 mt-10">
+      <form name="contact" method="POST" data-netlify="true" action="/contact/success/" class="grid grid-cols-1 gap-10 mt-10">
         <label class="block" for="name">
           <span class="">Name *</span>
           <input
@@ -104,27 +103,27 @@ templateClass:
           >
           </textarea>
         </label>
-        <button type="submit" class="rounded-full bg-brand-link text-black px-4 py-1 justify-self-end">
+        <button type="submit" class="rounded-full bg-brand-link outline-brand-link outline-1 outline-offset-0 hover:outline-offset-4 outline-double px-4 py-1 justify-self-end">
           Send message
         </button>
       </form>
     </div>
   </div>
   <div class="mt-24">
-    <div class="text-center bg-brand-primary text-brand-text max-w-4xl mx-auto px-10 py-12 outline-1 -outline-offset-8
+    <div class="text-center bg-brand-primary text-brand-text max-w-3xl mx-auto px-10 py-12 outline-1 -outline-offset-8
         outline-brand-link outline-double">
-      <p class="font-bold">Sign up for email updates</p>
-      <p class="mt-4">
+      <h2 class="text-4xl mt-0">Sign up for email updates</h2>
+      <p class="mb-8">
         Be among the first to hear about new shows, workshops, events and more! I send approximately one email a month.
       </p>
       <!-- Begin Mailchimp Signup Form -->
-      <div id="mc_embed_signup">
+      <div id="mc_embed_signup" class="text-left">
         <form
           action="https://list-manage.us1.list-manage.com/subscribe/post?u=7d5d4a2f2efe3fe2b6ecc3c23&amp;id=938521773d"
           method="post"
           id="mc-embedded-subscribe-form"
           name="mc-embedded-subscribe-form"
-          class="flex flex-row items-end gap-4"
+          class="flex flex-row items-end justify-center gap-4"
           target="_blank"
           novalidate>
           <label for="mce-EMAIL">
@@ -133,7 +132,7 @@ templateClass:
               type="email"
               value=""
               name="EMAIL"
-              class="mt-0 block w-full px-0.5 !bg-transparent border-0 border-b-2 border-brand-link focus:ring-0
+              class="mt-0 block w-80 max-w-full px-0.5 !bg-transparent border-0 border-b-2 border-brand-link focus:ring-0
                 focus:border-brand-link"
               id="mce-EMAIL"/>
           </label>
@@ -150,12 +149,24 @@ templateClass:
             value="Subscribe"
             name="subscribe"
             id="mc-embedded-subscribe"
-            class="rounded-full bg-brand-link text-black px-4 py-1">
+            class="rounded-full bg-brand-link text-body-text outline-brand-link outline-1 outline-offset-0 hover:outline-offset-4 outline-double px-4 py-1">
             Subscribe
           </button>
         </form>
+        <div id="mc-embedded-subscribe-success" class="text-center" style="display: none">
+          <p class="font-bold">Thanks for subscribing!</p>
+        </div>
       </div>
       <!--End mc_embed_signup-->
     </div>
   </div>
 </div>
+
+<script>
+  const emailSignupForm = document.getElementById('mc-embedded-subscribe-form');
+  const successMessage = document.getElementById('mc-embedded-subscribe-success');
+  emailSignupForm.addEventListener('submit', () => {
+    emailSignupForm.style.display = 'none';
+    successMessage.style.display = 'block';
+  });
+</script>

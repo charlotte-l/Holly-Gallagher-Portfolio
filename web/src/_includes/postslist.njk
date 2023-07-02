@@ -7,24 +7,22 @@
           <a class="stretched" href="{{ post.url | url }}">
             <img class="rounded-[7.5rem] w-full" src="{% croppedUrlFor currentPost.mainImage, 350, 450 %}" alt="{{ currentPost.mainImage.alt }}">
           </a>
-          <a href="{{ post.url | url }}">
-            <div class="absolute aspect-square -bottom-6 -right-6 p-12 bg-brand-link text-black outline-1 outline-offset-4 outline-brand-link outline-double rounded-full">
-              <svg viewBox="0 0 100 100" style="width: 90%; height: 90%; top: 5%; left: 5%" class="absolute z-10 motion-safe:animate-spin-slow motion-safe:pause motion-safe:hover:play">
-                <defs>
-                  <path id="circle" d=" M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"/>
-                </defs>
-                <text class="uppercase text-sm" letter-spacing="0.5">
-                  <textPath xlink:href="#circle">
-                    &nbsp;&nbsp;Read more&nbsp;&nbsp;&nbsp;&bullet;&nbsp;&nbsp;&nbsp;Read more&nbsp;&nbsp;&nbsp;&bullet;&nbsp;&nbsp;&nbsp;
-                  </textPath>
-                </text>
-              </svg>
-              <span class="text-6xl align-super block h-0 leading-[0.75]">&#8594;</span>
-            </div>
-          </a>
-        {% else %}
-          <code>{{ post.url }}</code>
         {% endif %}
+        <a href="{{ post.url | url }}">
+          <div class="absolute aspect-square {% if currentPost.mainImage.asset %}-bottom-6 -right-6{% else %}top-0 right-4 z-50{% endif %} p-12 bg-brand-link text-black outline-1 outline-offset-4 outline-brand-link outline-double rounded-full">
+            <svg viewBox="0 0 100 100" style="width: 90%; height: 90%; top: 5%; left: 5%" class="absolute z-10 motion-safe:animate-spin-slow motion-safe:pause motion-safe:hover:play">
+              <defs>
+                <path id="circle" d=" M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"/>
+              </defs>
+              <text class="uppercase text-sm" letter-spacing="0.5">
+                <textPath xlink:href="#circle">
+                  &nbsp;&nbsp;Read more&nbsp;&nbsp;&nbsp;&bullet;&nbsp;&nbsp;&nbsp;Read more&nbsp;&nbsp;&nbsp;&bullet;&nbsp;&nbsp;&nbsp;
+                </textPath>
+              </text>
+            </svg>
+            <span class="text-6xl align-super block h-0 leading-[0.75]">&#8594;</span>
+          </div>
+        </a>
       </div>
       <div class="relative bg-brand-primary text-brand-text z-10 px-10 py-12 mt-24 -ml-20 outline-1 -outline-offset-8 outline-brand-link outline-double">
         <div class="font-light text-sm mb-2">

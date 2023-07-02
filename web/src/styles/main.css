@@ -7,6 +7,7 @@
     font-family: "Open Sans", Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans",
       "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans",
       "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    @apply text-body-text;
     line-height: 1.75;
     letter-spacing: 0.05vw;
   }
@@ -157,6 +158,10 @@
   @media (prefers-reduced-motion: no-preference) {
     :where(.bg-brand-primary, .bg-body-bg) a:not(.stretched, .badge) {
       transition: color .2s ease-in-out, background-size 0.5s cubic-bezier(.5,.15,0,1), background-position 0.5s cubic-bezier(.5,.15,0,1);
+    }
+
+    :where(.bg-brand-primary, .bg-body-bg) button {
+      transition: outline-offset .2s ease-in-out;
     }
   }
 
