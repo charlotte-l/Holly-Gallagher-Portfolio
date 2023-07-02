@@ -13,23 +13,25 @@ import excerptPortableText from './objects/excerptPortableText'
 import aboutPortableText from './objects/aboutPortableText'
 import mainImage from './objects/mainImage'
 import authorReference from './objects/authorReference'
+import textAlign from './objects/textAlign'
 import galleryImage from './objects/galleryImage'
 import youtube from './objects/youtube'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default [
-    siteSettings,
-    engagement,
-    post,
-    project,
-    category,
-    author,
-    mainImage,
-    galleryImage,
-    youtube,
-    authorReference,
-    bodyPortableText,
-    bioPortableText,
-    excerptPortableText,
-    aboutPortableText
-];
+  siteSettings,
+  engagement,
+  post,
+  project,
+  category,
+  author,
+  textAlign,
+  mainImage,
+  galleryImage,
+  youtube,
+  authorReference,
+  bodyPortableText,
+  bioPortableText,
+  excerptPortableText,
+  aboutPortableText
+]

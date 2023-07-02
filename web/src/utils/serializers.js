@@ -1,7 +1,9 @@
 const imageUrl = require("./imageUrl");
+const BlocksToMarkdown = require("@sanity/block-content-to-markdown");
+const client = require("../utils/sanityClient");
 
 // Learn more on https://www.sanity.io/guides/introduction-to-portable-text
-module.exports = {
+const serializers = {
   types: {
     authorReference: ({ node }) => `[${node.name}](/authors/${node.slug.current})`,
     code: ({ node }) => "```" + node.language + "\n" + node.code + "\n```",
@@ -19,5 +21,11 @@ module.exports = {
       return tableStr.slice(0, -1);
     },
     youtube: ({node}) => `<iframe class="w-full aspect-video mb-4" frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" title="YouTube video player" width="680" height="380" src="https://www.youtube.com/embed/${node.url.split('?v=')[1]}"></iframe>`,
+    textAlign: ({ node }) => `<div style="text-align: ${node.alignment}">${BlocksToMarkdown(node.text, { serializers, ...client.config() })}</div>`,
   },
+  marks: {
+    color: (props) => `<span style="color: ${props.mark.hex}">${props.children}</span>`
+  }
 };
+
+module.exports = serializers;
