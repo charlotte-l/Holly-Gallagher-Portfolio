@@ -1,8 +1,8 @@
 {% set iconClasses = "h-7 w-7 transition-colors duration-300 fill-brand-text hover:fill-brand-link" %}
 
 <footer class="bg-brand-primary text-brand-text">
-    <div class="container py-5 flex justify-between items-center">
-        <span>© {{ currentYear }} Holly Gallagher. All rights reserved.</span>
+    <div class="container py-5 flex flex-col md:flex-row gap-4 justify-between items-center">
+        <span class="text-xs md:text-sm">© {{ currentYear }} Holly Gallagher. All rights reserved.</span>
         <div class="flex gap-8">
             <a class="social" href="https://twitter.com/hollyrachael_" target="_blank" rel="noopener noreferrer">{% svg "icon-twitter", iconClasses, "Twitter" %}</a>
             <a class="social" href="https://www.youtube.com/channel/UC09znLuZy6eMJI0DbKEHC-Q" target="_blank" rel="noopener noreferrer">{% svg "icon-youtube", iconClasses, "YouTube" %}</a>

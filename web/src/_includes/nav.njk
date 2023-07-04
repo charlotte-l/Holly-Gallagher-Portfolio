@@ -1,14 +1,19 @@
 <header class="bg-brand-primary">
-    <div class="container py-5 flex justify-between items-center">
+    <nav class="container py-5 flex justify-between items-center">
         <a class="brand" href="{{ '/' | url }}"><span class="block font-display font-bold text-3xl tracking-wider text-brand-text">{{metadata.title}}</span></a>
-        <nav>
-            <ul class="list-none flex gap-10">
+        <div>
+            <input id="menu-toggle" type="checkbox" />
+            <label class="menu-button-container" for="menu-toggle">
+                <div class="menu-button"></div>
+            </label>
+            <ul class="menu list-none gap-0 md:gap-6 xl:gap-10">
                 {%- for nav in collections.nav | sort(false, false, 'data.order') -%}
                 <li class="nav-item relative{% if nav.data.children %} group{% endif %}"{% if (nav.url == page.url) and (not nav.data.children) %} aria-current="page"{% endif %}>
                     {% if nav.data.children %}
-                        <button class="text-brand-text" aria-haspopup="true" aria-controls="{{nav.data.navtitle | slugify }}-dropdown">
+                        <a class="inline-block md:hidden" href="{{ nav.url | url }}">{{ nav.data.navtitle }}</a>
+                        <button class="hidden md:inline-block text-brand-text" aria-haspopup="true" aria-controls="{{nav.data.navtitle | slugify }}-dropdown">
                             {{ nav.data.navtitle }}&nbsp;
-                            <span class="text-sm align-text-top inline-block transition-all group-hover:-rotate-180 group-focus-within:-rotate-180">↓</span>
+                            <span class="text-sm align-text-top  transition-all group-hover:-rotate-180 group-focus-within:-rotate-180">↓</span>
                         </button>
                         <ul id="{{nav.data.navtitle | slugify}}-dropdown" class="list-none p-0 absolute top-8 w-max transition-all h-0 overflow-hidden group-hover:h-24 group-focus-within:h-24">
                         {%- for key, val in nav.data.children -%}
@@ -23,6 +28,6 @@
                 </li>
                 {%- endfor -%}
             </ul>
-        </nav>
-    </div>
+        </div>
+    </nav>
 </header>

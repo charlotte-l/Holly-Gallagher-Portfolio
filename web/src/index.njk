@@ -3,19 +3,19 @@ layout: base.njk
 title: Holly Gallagher
 navtitle: Home
 ---
-<div class="bg-brand-primary text-brand-text pt-24 pb-32">
+<div class="bg-brand-primary text-brand-text pt-16 md:pt-24 pb-32">
     <div class="container">
-        <div class="flex">
-            <div class="basis-8/12">
-                <div class="relative h-full w-8/12 mb-6">
-                    {% svg "star", "absolute w-20 h-20 top-4 text-brand-link" %}
-                    {% svg "star", "absolute w-10 h-10 top-20 left-12 text-white" %}
-                    {% svg "squiggle", "absolute h-14 rotate-[50deg] top-1/2 -left-40 text-brand-link" %}
-                    {% svg "blob", "absolute h-4 -left-36 top-96 rotate-6 text-white" %}
+        <div class="flex flex-col-reverse lg:flex-row">
+            <div class="basis-full lg:basis-8/12 mt-20 md:-mt-64 lg:mt-0">
+                <div class="relative h-full md:w-8/12 mb-6">
+                    {% svg "star", "absolute w-20 h-20 -top-32 -left-12 md:top-4 md:left-0 text-brand-link" %}
+                    {% svg "star", "absolute w-10 h-10 -top-16 md:top-20 left-0 md:left-12 text-white" %}
+                    {% svg "squiggle", "absolute h-10 md:h-14 rotate-[50deg] -top-60 md:top-1/2 -left-40 text-brand-link" %}
+                    {% svg "blob", "absolute h-4 left-2- md:-left-36 top-64 md:top-96 rotate-6 text-white" %}
                     <a class="group" href="{{metadata.featuredLink or '/projects/'}}">
                         <div class="absolute aspect-square -top-8 left-2/3 p-3 bg-brand-link text-black outline-1 outline-offset-4 outline-brand-link outline-double rounded-full motion-safe:animate-heartbeat">
                             {% svg "star", "w-10 h-10 text-white" %}
-                            <svg viewBox="0 0 100 100" style="width: 175%; height: 175%; top: -37.5%; left: -37.5%" class="absolute -z-10 scale-0 -rotate-12 overflow-visible transition-transform duration-300 group-hover:scale-100">
+                            <svg viewBox="0 0 100 100" class="homepage-contact absolute -z-10 scale-0 -rotate-12 overflow-visible transition-transform duration-300 group-hover:scale-100">
                                 <defs>
                                     <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
                                 </defs>
@@ -29,7 +29,7 @@ navtitle: Home
                     </a>
                     <div class="h-full aspect-[1/1.15] rounded-tl-[50%] rounded-tr-[50%] rounded-bl-lg rounded-br-lg bg-no-repeat bg-cover bg-center" style="background-image: url('{% croppedUrlFor metadata.heroImage, 1000 %}')"></div>
                     <a href="/contact/">
-                        <div class="absolute aspect-square -bottom-8 -left-8 p-14 bg-brand-link text-black outline-1 outline-offset-4 outline-brand-link outline-double rounded-full">
+                        <div class="absolute aspect-square -bottom-8 -left-8 p-8 md:p-14 bg-brand-link text-black outline-1 outline-offset-4 outline-brand-link outline-double rounded-full">
                             <svg viewBox="0 0 100 100" style="width: 90%; height: 90%; top: 5%; left: 5%" class="absolute motion-safe:animate-spin-slow motion-safe:pause motion-safe:hover:play">
                                 <defs>
                                     <path id="circle"
@@ -45,18 +45,18 @@ navtitle: Home
                                     </textPath>
                                 </text>
                             </svg>
-                            <span class="text-7xl align-super block h-0 leading-[0.75]">&#8594;</span>
+                            <span class="text-3xl md:text-7xl align-super block h-0 leading-[0.75]">&#8594;</span>
                         </div>
                     </a>
-                    {% svg "bolt", "absolute h-24 -right-72 bottom-28 rotate-90 text-brand-link" %}
-                    {% svg "blob", "absolute h-8 -right-72 bottom-20 text-white" %}
-                    {% svg "star", "absolute w-16 h-16 -right-56 bottom-6 text-brand-link" %}
+                    {% svg "bolt", "absolute h-24 -right-32 md:-right-72 bottom-42 md:bottom-28 rotate-90 text-brand-link" %}
+                    {% svg "blob", "absolute h-8 -right-40 md:-right-72 bottom-20 text-white" %}
+                    {% svg "star", "absolute w-16 h-16 right-0 md:-right-56 bottom-6 text-brand-link" %}
                 </div>
             </div>
-            <div class="basis-4/12 z-10">
-                <h1 class="text-[15rem] mb-0 text-left -ml-80 mt-0 leading-none after:content-none">Holly Gallagher</h1>
+            <div class="basis-full lg:basis-4/12 z-10">
+                <h1 class="text-8xl lg:text-[15rem] mb-0 text-left lg:-ml-80 mt-0 leading-none after:content-none">Holly Gallagher</h1>
                 <span class="block text-right text-3xl font-display -ml-80 mb-10 text-brand-link"><em class="font-bold">(she/her)</em></span>
-                <span class="block text-right text-5xl leading-[1.15] pb-8 bar"><span class="text-brand-link">theatre</span> <br/>maker <br/>director <br/>producer <br/>facilitator</span>
+                <span class="block text-right text-2xl md:text-5xl leading-[1.15] pb-8 bar"><span class="text-brand-link">theatre</span> <br/>maker <br/>director <br/>producer <br/>facilitator</span>
             </div>
         </div>
     </div>

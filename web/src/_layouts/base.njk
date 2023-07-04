@@ -82,7 +82,7 @@
     {% block header %}
       {% include "../_includes/nav.njk" %}
     {% endblock %}
-    <main id="content" {% if templateClass %} class="{{ templateClass }}" {% endif %} role="main">
+    <main id="content" class="overflow-hidden{% if templateClass %} {{ templateClass }}{% endif %}"  role="main">
       {{ content | safe }}
     </main>
     {% block footer %}

@@ -25,32 +25,32 @@ templateClass:
 {% endif %}
 
 <div class="container max-w-6xl py-24">
-  <section class="flex items-start gap-24">
-    <h2 class="mt-0 basis-1/3 diamonds bar bar--short">Key Experience<span class="dot"></span></h2>
-    <div class="basis-2/3">
+  <section class="flex flex-col md:flex-row items-start gap-24">
+    <h2 class="mt-0 basis-full md:basis-1/3 diamonds bar bar--short">Key Experience<span class="dot"></span></h2>
+    <div class="basis-full md:basis-2/3">
       {{authors[0].key_experience | markdownify | safe }}
     </div>
   </section>
   {% svg "squiggle", "h-6 mx-auto mt-24 mb-16 text-brand-link" %}
-  <section class="flex items-start gap-24 mt-24">
-    <h2 class="mt-0 basis-1/3 diamonds bar bar--short">Training and Development<span class="dot"></span></h2>
-    <div class="basis-2/3">
+  <section class="flex flex-col md:flex-row items-start gap-24 mt-24">
+    <h2 class="mt-0 basis-full md:basis-1/3 diamonds bar bar--short">Training and Development<span class="dot"></span></h2>
+    <div class="basis-full md:basis-2/3">
       {{authors[0].training_support | markdownify | safe }}
     </div>
   </section>
   {% svg "squiggle", "h-6 mx-auto mt-24 mb-16 text-brand-link" %}
-  <section class="flex items-start gap-24 mt-24">
-    <h2 class="mt-0 basis-1/3 diamonds bar bar--short">Courses and Institutions<span class="dot"></span></h2>
-    <div class="basis-2/3">
+  <section class="flex flex-col md:flex-row items-start gap-24 mt-24">
+    <h2 class="mt-0 basis-full md:basis-1/3 diamonds bar bar--short">Courses and Institutions<span class="dot"></span></h2>
+    <div class="basis-full md:basis-2/3">
       {{authors[0].courses_institutions | markdownify | safe }}
     </div>
   </section>
 </div>
 <div class="bg-brand-primary text-brand-text overflow-hidden">
   <section class="container max-w-6xl mt-20 pt-40 pb-28">
-    <blockquote class="relative before:content-['“'] before:absolute before:top-4 before:-left-20 before:text-[40vh] before:leading-[0] before:font-serif before:opacity-10">
-      <p class="text-5xl leading-tight mx-auto">Holly takes the stories of <span class="text-brand-link">ordinary people</span> and <span class="text-brand-link">elevates</span> them to the level of the profound.</p>
-      <cite class="block text-2xl text-right mt-8">&mdash; Kieran Hurley</cite>
+    <blockquote class="relative before:content-['“'] before:absolute before:top-4 before:-left-8 md:before:-left-20 before:text-[40vh] before:leading-[0] before:font-serif before:opacity-10">
+      <p class="text-3xl md:text-5xl leading-tight mx-auto">Holly takes the stories of <span class="text-brand-link">ordinary people</span> and <span class="text-brand-link">elevates</span> them to the level of the profound.</p>
+      <cite class="block text-lg md:text-2xl text-right mt-8">&mdash; Kieran Hurley</cite>
     </blockquote>
   </section>
 </div>
