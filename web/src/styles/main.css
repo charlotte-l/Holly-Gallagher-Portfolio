@@ -321,7 +321,7 @@
       display: list-item;
       height: auto;
       width: auto;
-      background-color: unset;
+      @apply bg-brand-primary;
       color: inherit;
       overflow: visible;
     }

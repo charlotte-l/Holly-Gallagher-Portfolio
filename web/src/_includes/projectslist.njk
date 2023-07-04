@@ -1,108 +1,54 @@
-{% if projectslist.length > 3 %}
-  <div class="embla overflow-hidden pb-32">
-    <button class="embla__prev aspect-square p-8 bg-brand-link text-black rounded-full" aria-label="Previous slide">
-      <span class="inline-block text-6xl align-[-1rem] h-0 leading-[0]">&#8592;</span>
-    </button>
-    <button class="embla__next aspect-square p-8 bg-brand-link text-black rounded-full ml-6" aria-label="Next slide">
-      <span class="inline-block text-6xl align-[-1rem] h-0 leading-[0]">&#8594;</span>
-    </button>
-    <div class="embla__viewport mt-16">
-      <div class="grid grid-rows-1 grid-cols-3 gap-8">
-        {% for project in projectslist %}
-          {% set currentProject = project.data.project %}
-          <div class="relative flex justify-center mb-12">
-            <svg
-              class="absolute left-1/2 top-1/2 aspect-[1/1.5] -translate-x-1/2 -translate-y-1/2 overflow-visible"
-              height="540"
-              viewBox="0 0 400 600">
-              <defs>
-                <path
-                  id="ellipse"
-                  d="M400 300C400 465.685 310.457 600 200 600C89.5431 600 0 465.685 0 300C0 134.315 89.5431 0 200 0C310.457 0 400 134.315
-                    400 300Z"/>
-              </defs>
-              <text class="text-3xl tracking-wider fill-brand-link">
-                {% if currentProject.categories %}
-                <textPath alignment-baseline="top" startOffset="0%" text-anchor="start" xlink:href="#ellipse">
-                  {% for category in currentProject.categories | limit(3) %}
-                    <a href="javascript:;" data-filter="{{ category.title }}">{{ category.title }}</a>{% if not loop.last %}&nbsp;&bullet;&nbsp;{% endif %}
-                  {% endfor %}
-                </textPath>
-                {% endif %}
-                <textPath alignment-baseline="top" startOffset="50%" text-anchor="start" xlink:href="#ellipse">
-                  <a class="fill-brand-link" href="{{ project.url | url }}">{{ currentProject.title }}</a>
-                </textPath>
-              </text>
-            </svg>
-            <a class="stretched" href="{{ project.url | url }}">
-              <div class="h-[500px] aspect-[1/1.5] bg-no-repeat bg-cover bg-center" style="{% if currentProject.mainImage.asset %}background-image: url('{% imageUrlFor currentProject.mainImage.asset, 900 %}'); clip-path: url(#ellipse-clip){% endif %}"></div>
-            </a>
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-{% else %}
-  <div class="container flex justify-evenly gap-24 pb-32">
-    {% for project in projectslist %}
-      {% set currentProject = project.data.project %}
-      <div class="relative flex justify-center mb-12">
-        <svg
-          class="absolute left-1/2 top-1/2 aspect-[1/1.5] -translate-x-1/2 -translate-y-1/2 overflow-visible"
-          height="540"
-          viewBox="0 0 400 600">
-          <defs>
-            <path
-              id="ellipse"
-              d="M400 300C400 465.685 310.457 600 200 600C89.5431 600 0 465.685 0 300C0 134.315 89.5431 0 200 0C310.457 0 400 134.315
-                400 300Z"/>
-          </defs>
-          <text class="text-3xl tracking-wider fill-brand-link">
-            {% if currentProject.categories %}
-            <textPath alignment-baseline="top" startOffset="0%" text-anchor="start" xlink:href="#ellipse">
-              {% for category in currentProject.categories | limit(3) %}
-                <a href="javascript:;" data-filter="{{ category.title }}">{{ category.title }}</a>{% if not loop.last %}&nbsp;&bullet;&nbsp;{% endif %}
-              {% endfor %}
-            </textPath>
+<div class="container flex flex-col md:flex-row justify-evenly gap-24 pb-32">
+  {% for project in projectslist %}
+    {% set currentProject = project.data.project %}
+    <div class="relative flex justify-center">
+      {% if loop.index == 1 %}
+        {% svg "cat", "absolute h-48 -left-40 bottom-0 text-brand-primary -z-10" %}
+        {% svg "squiggle", "absolute h-10 -rotate-[50deg] bottom-60 -left-40 text-brand-link" %}
+      {% elseif loop.index == 2 %}
+        {% svg "butterfly", "absolute h-96 -right-32 md:-right-32 md:-top-32 text-brand-primary -z-10" %}
+        {% svg "star", "absolute w-10 h-10 -top-16 md:top-24 right-0 md:right-0 z-10 text-brand-link" %}
+      {% elseif loop.index == 3 %}
+        {% svg "leaf", "absolute h-60 -right-32 md:-right-44 md:bottom-32 -rotate-[20deg] text-brand-primary -z-10" %}
+        {% svg "bolt", "absolute h-24 -right-32 md:-right-44 bottom-50 md:bottom-20 text-brand-link" %}
+      {% endif %}
+      <a class="stretched group" href="{{ project.url | url }}">
+        <div class="h-[650px] aspect-[1/1.5] rounded-[15rem] bg-no-repeat bg-cover bg-center outline-2 outline-offset-8 outline-brand-link outline-double" style="{% if currentProject.mainImage.asset %}background-image: url('{% imageUrlFor currentProject.mainImage.asset, 900 %}');{% endif %}">
+          <div class="w-full h-full rounded-[15rem] bg-brand-primary text-brand-text flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+            <div class="font-light text-sm">
+              {% if currentProject.categories %}
+                {% for category in currentProject.categories | limit(3) %}
+                  {{ category.title }}{% if not loop.last %} / {% endif %}
+                {% endfor %}
+              {% endif %}
+            </div>
+            <h3 class="mt-4">{{ currentProject.title }}</h3>
+            {% if currentProject.excerpt %}
+              <div class="px-8 text-center text-base">
+                {{ currentProject.excerpt | markdownify | safe }}
+              </div>
             {% endif %}
-            <textPath alignment-baseline="top" startOffset="50%" text-anchor="start" xlink:href="#ellipse">
-              <a class="fill-brand-link" href="{{ project.url | url }}">{{ currentProject.title }}</a>
-            </textPath>
-          </text>
-        </svg>
-        <a class="stretched" href="{{ project.url | url }}">
-          <div class="h-[500px] aspect-[1/1.5] bg-no-repeat bg-cover bg-center" style="{% if currentProject.mainImage.asset %}background-image: url('{% imageUrlFor currentProject.mainImage.asset, 900 %}'); clip-path: url(#ellipse-clip){% endif %}"></div>
-        </a>
-      </div>
-    {% endfor %}
-  </div>
-{% endif %}
-
-<svg width="0" height="0">
-  <defs>
-    <clipPath id="ellipse-clip" clipPathUnits="objectBoundingBox">
-      <path d="M1,0.5 A0.5,0.5,0,0,1,0.5,1 A0.5,0.5,0,0,1,0,0.5 A0.5,0.5,0,0,1,0.5,0 A0.5,0.5,0,0,1,1,0.5"></path>
-    </clipPath>
-  </defs>
-</svg>
-
-{% if projectslist.length > 3 %}
-  {% set carouselScript %}
-  {% include "scripts/embla-carousel.umd.js" %}
-  {% endset %}
-
-  <script>{{ carouselScript | safe }}</script>
-
-  <script type="text/javascript">
-    const rootNode = document.querySelector('.embla')
-    const viewportNode = rootNode.querySelector('.embla__viewport')
-    const prevButtonNode = rootNode.querySelector('.embla__prev')
-    const nextButtonNode = rootNode.querySelector('.embla__next')
-    const embla = EmblaCarousel(viewportNode, {
-      loop: true,
-      startIndex: 1
-    })
-    prevButtonNode.addEventListener('click', embla.scrollPrev, false)
-    nextButtonNode.addEventListener('click', embla.scrollNext, false)
-  </script>
-{% endif %}
+          </div>
+          <div class="absolute aspect-square -bottom-14 left-1/2 -translate-x-1/2 p-8 md:p-12 bg-brand-link text-black outline-1 outline-offset-4 outline-brand-link outline-double rounded-full">
+              <svg viewBox="0 0 100 100" style="width: 90%; height: 90%; top: 5%; left: 5%" class="absolute motion-safe:animate-spin-slow motion-safe:pause motion-safe:hover:play">
+                  <defs>
+                      <path id="circle"
+                      d="
+                          M 50, 50
+                          m -37, 0
+                          a 37,37 0 1,1 74,0
+                          a 37,37 0 1,1 -74,0"/>
+                  </defs>
+                  <text class="text-xs uppercase" letter-spacing="0.5">
+                      <textPath xlink:href="#circle">
+                      View Project&nbsp;&bullet;&nbspView Project&nbsp;&bullet;&nbspView Project&nbsp;&bullet;&nbsp;
+                      </textPath>
+                  </text>
+              </svg>
+              <span class="text-3xl md:text-5xl align-super block h-0 leading-[0.75!important]">&#8594;</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+</div>

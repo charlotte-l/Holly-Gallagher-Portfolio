@@ -21,6 +21,12 @@ templateClass:
 {% include "../_includes/header.njk" %}
 
 <div class="container my-24">
-  {% set projectslist = collections.myProjects %}
+  <h2 class="w-fit mx-auto mb-24 diamonds bar bar--short">Featured Work<span class="dot"></span></h2>
+
+  {% set projectslist = collections.allProjects | limit(4) %}
   {% include "projectslist.njk" %}
+
+  <div class="text-center mt-8">
+    <a class="text-xl" href="/projects/all/">See all work&thinsp;&#8594;</a>
+  </div>
 </div>

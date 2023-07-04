@@ -1,0 +1,27 @@
+<div class="grid md:grid-cols-2 gap-x-14 gap-y-24">
+  {% for project in projectslist %}
+    {% set currentProject = project.data.project %}
+    <div class="relative flex flex-col justify-start items-center text-center">
+      <div class="absolute -top-8  p-3 rounded-full bg-body-bg outline-1 -outline-offset-4 outline-brand-link outline">
+        {% svg "star", "w-9 h-9 text-brand-link" %}
+      </div>
+      {% if currentProject.mainImage.asset %}
+      <a class="w-full stretched bg-brand-primary" href="/updates/{{ currentProject.slug.current }}">
+        <img class="w-full outline outline-brand-primary outline-[1rem] -outline-offset-[1rem]" src="{% croppedUrlFor currentProject.mainImage, 400, 300 %}" alt="{{ currentProject.mainImage.alt }}">
+      </a>
+      {% endif %}
+      <div class="w-full bg-brand-primary text-brand-text pb-8 px-2 flex-grow {% if not currentProject.mainImage.asset %}flex flex-col justify-center{% endif %}">
+        <div class="font-light text-sm mt-4">
+          {% for category in currentProject.categories %}
+            <a class="" href="/updates/{{ category.slug }}">{{ category.title }}</a>{% if not loop.last %} / {% endif %}
+          {% endfor %}
+        </div>
+        <div class="mt-3">
+          <a href="/updates/{{ currentProject.slug.current }}" class="font-display font-bold text-3xl tracking-wider">
+            {{ currentProject.title }}
+          </a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

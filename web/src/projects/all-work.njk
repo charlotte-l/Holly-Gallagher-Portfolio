@@ -9,7 +9,9 @@ templateClass:
 {% set heading = title %}
 {% include "../_includes/header.njk" %}
 
-<div class="container my-24">
-  {% set projectslist = collections.myProjects %}
-  {% include "projectslist.njk" %}
+<div class="container max-w-5xl my-24">
+  <h2 class="w-fit mx-auto mb-24 diamonds bar bar--short">All Work<span class="dot"></span></h2>
+
+  {% set projectslist = collections.allProjects %}
+  {% include "projectslist-archive.njk" %}
 </div>
