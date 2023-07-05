@@ -1,0 +1,14 @@
+<div class="flex flex-col md:flex-row gap-8 justify-center items-center mb-16">
+  {% if page.url !== "/projects/all/" %}
+    <a class="button rounded-full text-center w-48 md:w-32 bg-brand-link outline-brand-link outline-1 outline-offset-0 hover:outline-offset-4 outline-double px-4 py-1" href="/projects/all/">All Work</a>
+  {% endif %}
+
+  {% for category in categories %}
+    {% if category.projects.length > 0 %}
+      {% set link = ["/projects/", category.slug.current, "/"] | join %}
+      {% if page.url !== link %}
+        <a class="button rounded-full text-center w-48 md:w-32 bg-brand-link outline-brand-link outline-1 outline-offset-0 hover:outline-offset-4 outline-double px-4 py-1" href="{{ link }}">{{ category.title }}</a>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+</div>

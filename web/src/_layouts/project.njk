@@ -11,37 +11,37 @@ templateClass: mb-10
   </div>
 
   {% if project.excerpt %}
-    <div class="container mt-16 text-3xl">
+    <div class="container max-w-6xl mt-16 text-3xl">
       {{ project.excerpt | markdownify | safe }}
     </div>
   {% endif %}
 
   {% if project.credits or project.description %}
-  <div class="container mt-16">
-    <div class="flex gap-10">
-      <div class="project-credits basis-1/5">
+  <div class="container max-w-6xl mt-16">
+    <div class="flex flex-col xl:flex-row gap-10">
+      <div class="project-credits basis-1/3">
         {{ project.credits | markdownify | safe }}
       </div>
-      <div class="basis-4/5">
+      <div class="basis-2/3">
         {{ project.description | markdownify | safe }}
       </div>
     </div>
   </div>
   {% endif %}
 
-  {% if project.imageGallery.length > 4 %}
-    <div class="embla overflow-hidden mt-16 mb-32">
-      <button class="embla__prev aspect-square p-8 bg-brand-link text-black rounded-full  mb-8" aria-label="Previous slide">
-        <span class="inline-block text-6xl align-[-1rem] h-0 leading-[0]">&#8592;</span>
-      </button>
-      <button class="embla__next aspect-square p-8 bg-brand-link text-black rounded-full ml-6 mb-8" aria-label="Next slide">
-        <span class="inline-block text-6xl align-[-1rem] h-0 leading-[0]">&#8594;</span>
-      </button>
+  {% if project.imageGallery.length > 0 %}
+    <div class="container max-w-6xl mt-16 mb-32">
+      <div class="glider-contain">
+        <button class="glider-prev aspect-square p-6 bg-brand-link text-black rounded-full flex align-center mb-8" aria-label="Previous slide">
+          <span class="inline-block text-4xl h-0 !leading-[0.9]">&#8592;</span>
+        </button>
+        <button class="glider-next aspect-square p-6 bg-brand-link text-black rounded-full flex align-center ml-6 mb-8" aria-label="Next slide">
+          <span class="inline-block text-4xl h-0 !leading-[0.9]">&#8594;</span>
+        </button>
 
-      <div class="embla__viewport">
-        <div class="grid grid-rows-1 grid-cols-4 gap-24">
+        <div class="glider">
           {% for image in project.imageGallery %}
-            <div class="lightbox cursor-pointer group relative basis-1/4 aspect-[1/1.5] rounded-[15rem] bg-no-repeat bg-cover bg-center max-w-[320px]" style="background-image: url('{% croppedUrlFor image, 600 %}')" data-img="{%  imageUrlFor image, 1200  %}" data-alt="{{image.alt}}" data-caption="{{image.caption}}">
+            <div class="lightbox cursor-pointer group relative aspect-[1/1.5] rounded-[15rem] bg-no-repeat bg-cover bg-center h-[450px] mx-4" style="background-image: url('{% croppedUrlFor image, 600 %}')" data-img="{%  imageUrlFor image, 1200  %}" data-alt="{{image.alt}}" data-caption="{{image.caption}}">
               <div class="absolute aspect-square transition-all duration-300 right-6 bottom-6 rounded-full bg-brand-link outline-1 outline-offset-4 outline-brand-link outline-double p-0 group-hover:p-4">
                 <svg viewBox="0 0 100 100" style="width: 140%; height: 140%; top: -36%; left: -28%" class="absolute scale-0 -rotate-12 overflow-visible transition-transform duration-300 group-hover:scale-100">
                   <defs>
@@ -60,91 +60,83 @@ templateClass: mb-10
         </div>
       </div>
     </div>
-  {% elseif project.imageGallery.length > 0 %}
-    <div class="container flex justify-evenly gap-24 mt-16 mb-32">
-      {% for image in project.imageGallery %}
-        <div class="lightbox cursor-pointer group relative basis-1/4 aspect-[1/1.5] rounded-[15rem] bg-no-repeat bg-cover bg-center max-w-[320px]" style="background-image: url('{% croppedUrlFor image, 600 %}')" data-img="{%  imageUrlFor image, 1200  %}" data-alt="{{image.alt}}" data-caption="{{image.caption}}">
-          <div class="absolute aspect-square transition-all duration-300 right-6 bottom-6 rounded-full bg-brand-link outline-1 outline-offset-4 outline-brand-link outline-double p-0 group-hover:p-4 motion-safe:animate-heartbeat motion-safe:play motion-safe:group-hover:pause">
-            <svg viewBox="0 0 100 100" style="width: 140%; height: 140%; top: -36%; left: -28%" class="absolute scale-0 -rotate-12 overflow-visible transition-transform duration-300 group-hover:scale-100">
-              <defs>
-                  <path id="circle" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
-              </defs>
-              <text class="text-3xl fill-brand-link" letter-spacing="0">
-                  <textPath xlink:href="#circle">
-                    Expand
-                  </textPath>
-              </text>
-            </svg>
-            <span class="block text-5xl align-super h-0 leading-[0.75] text-black transition-opacity delay-100 scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100 pointer-events-none">&#8689;</span>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
   {% endif %}
 
-  <div class="max-w-prose mx-auto mt-16">
+  <div class="container max-w-prose mx-auto mt-16">
     {{ project.body | markdownify | safe }}
   </div>
 </article>
 
-{% if project.imageGallery.length > 4 %}
+{% if project.imageGallery.length > 0 %}
+  {% set carouselScript %}
+    {% include "scripts/glider.min.js" %}
+  {% endset %}
 
-{% set carouselScript %}
-  {% include "scripts/embla-carousel.umd.js" %}
-{% endset %}
+  <script>{{ carouselScript | safe }}</script>
 
-<script>{{ carouselScript | safe }}</script>
-
-<script type="text/javascript">
-document.addEventListener('DOMContentLoaded', () => {
-  const rootNode = document.querySelector('.embla')
-  const viewportNode = rootNode.querySelector('.embla__viewport')
-  const prevButtonNode = rootNode.querySelector('.embla__prev')
-  const nextButtonNode = rootNode.querySelector('.embla__next')
-
-  const embla = EmblaCarousel(viewportNode, {
-    loop: true,
-    startIndex: 1
-  })
-
-  prevButtonNode.addEventListener('click', embla.scrollPrev, false)
-  nextButtonNode.addEventListener('click', embla.scrollNext, false)
-});
-</script>
-
+  <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', () => {
+    new Glider(document.querySelector('.glider'), {
+      slidesToShow: 'auto',
+      slidesToScroll: 1,
+      itemWidth: 300,
+      draggable: false,
+      arrows: {
+        prev: '.glider-prev',
+        next: '.glider-next'
+      },
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 'auto',
+            slidesToScroll: 1,
+            itemWidth: 275,
+          }
+        },
+        {
+          breakpoint: 1280,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            itemWidth: 300,
+          }
+        }
+      ]
+    });
+  });
+  </script>
 {% endif %}
 
 {% if project.imageGallery.length > 0 %}
+  {% set lightboxScript %}
+    {% include "scripts/basicLightbox.min.js" %}
+  {% endset %}
 
-{% set lightboxScript %}
-  {% include "scripts/basicLightbox.min.js" %}
-{% endset %}
+  <script>{{ lightboxScript | safe }}</script>
 
-<script>{{ lightboxScript | safe }}</script>
+  <script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.lightbox').forEach(el => el.addEventListener('click', buildLightbox));
 
-<script type="text/javascript">
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.lightbox').forEach(el => el.addEventListener('click', buildLightbox));
+    function buildLightbox(e) {
+      // get root lightbox element with attached data attributes
+      const targetImg = e.target.closest(".lightbox");
+      const imgUrl = targetImg.dataset.img;
+      const imgAlt = targetImg.dataset.alt;
+      const imgCaption = targetImg.dataset.caption;
 
-  function buildLightbox(e) {
-    // get root lightbox element with attached data attributes
-    const targetImg = e.target.closest(".lightbox");
-    const imgUrl = targetImg.dataset.img;
-    const imgAlt = targetImg.dataset.alt;
-    const imgCaption = targetImg.dataset.caption;
-
-    basicLightbox.create(`
-      <div class="container flex">
-        <div class="bg-brand-primary text-brand-text grow-1 shrink-0 basis-full max-w-xs p-6 ${!imgCaption && 'hidden'}">
-          <p>${imgCaption}</p>
+      basicLightbox.create(`
+        <div class="container flex flex-col-reverse xl:flex-row">
+          <div class="bg-brand-primary text-brand-text grow-1 shrink-0 basis-full xl:max-w-xs p-6 ${!imgCaption && 'hidden'}">
+            <p>${imgCaption}</p>
+          </div>
+          <div class="">
+            <img src="${imgUrl}" alt="${imgAlt}">
+          </div>
         </div>
-        <div class="">
-          <img src="${imgUrl}" alt="${imgAlt}">
-        </div>
-      </div>
-    `).show();
-  }
-});
-</script>
-
+      `).show();
+    }
+  });
+  </script>
 {% endif %}

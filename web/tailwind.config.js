@@ -50,6 +50,9 @@ module.exports = {
       gridTemplateColumns: {
         'postsList': '1fr 45ch',
       },
+      screens: {
+        '3xl': '1800px',
+      },
     }
   },
   plugins: [

@@ -12,6 +12,8 @@ templateClass:
 <div class="container max-w-5xl my-24">
   <h2 class="w-fit mx-auto mb-24 diamonds bar bar--short">All Work<span class="dot"></span></h2>
 
+  {% include "projectslist-nav.njk" %}
+
   {% set projectslist = collections.allProjects %}
   {% include "projectslist-archive.njk" %}
 </div>

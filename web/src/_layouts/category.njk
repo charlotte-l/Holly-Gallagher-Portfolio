@@ -23,6 +23,8 @@ templateClass:
 <div class="container max-w-5xl my-24">
   {% if type == "project" %}
     <h2 class="w-fit mx-auto mb-24 diamonds bar bar--short">{{ category.title }}<span class="dot"></span></h2>
+
+    {% include "projectslist-nav.njk" %}
   {% endif %}
 
   {% if category.description %}
