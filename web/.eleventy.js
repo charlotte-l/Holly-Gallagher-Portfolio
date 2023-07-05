@@ -54,11 +54,11 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addNunjucksAsyncShortcode("image", shortcodes.imageShortcode);
 
   eleventyConfig.addShortcode("imageUrlFor", (image, width = "400") => {
-    return urlFor(image).width(width).auto("format");
+    return urlFor(image).width(width).auto("format").url();
   });
 
   eleventyConfig.addShortcode("croppedUrlFor", (image, width, height) => {
-    return urlFor(image).width(width).height(height).auto("format");
+    return urlFor(image).width(width).height(height).auto("format").url();
   });
 
   eleventyConfig.addFilter("dump", (obj) => {

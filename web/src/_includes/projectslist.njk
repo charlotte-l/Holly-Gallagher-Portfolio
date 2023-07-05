@@ -4,13 +4,13 @@
     <div class="relative flex justify-center">
       {% if loop.index == 1 %}
         {% svg "cat", "absolute h-48 -left-40 bottom-0 text-brand-primary -z-10" %}
-        {% svg "squiggle", "absolute h-10 -rotate-[50deg] bottom-60 -left-40 text-brand-link" %}
+        {% svg "squiggle", "absolute h-10 -rotate-[50deg] bottom-60 -left-40 z-10 text-brand-link" %}
       {% elseif loop.index == 2 %}
         {% svg "butterfly", "absolute h-96 -right-32 md:-right-32 md:-top-32 text-brand-primary -z-10" %}
         {% svg "star", "absolute w-10 h-10 -top-16 md:top-24 right-0 md:right-0 z-10 text-brand-link" %}
       {% elseif loop.index == 3 %}
         {% svg "leaf", "absolute h-60 -right-32 md:-right-44 md:bottom-32 -rotate-[20deg] text-brand-primary -z-10" %}
-        {% svg "bolt", "absolute h-24 -right-32 md:-right-44 bottom-50 md:bottom-20 text-brand-link" %}
+        {% svg "bolt", "absolute h-24 -right-32 md:-right-44 bottom-50 md:bottom-20 z-10 text-brand-link" %}
       {% endif %}
       <a class="stretched group" href="{{ project.url | url }}">
         <div class="h-[650px] aspect-[1/1.5] rounded-[15rem] bg-no-repeat bg-cover bg-center outline-2 outline-offset-8 outline-brand-link outline-double" style="{% if currentProject.mainImage.asset %}background-image: url('{% imageUrlFor currentProject.mainImage.asset, 900 %}');{% endif %}">
@@ -41,7 +41,7 @@
                   </defs>
                   <text class="text-xs uppercase" letter-spacing="0.5">
                       <textPath xlink:href="#circle">
-                      View Project&nbsp;&bullet;&nbspView Project&nbsp;&bullet;&nbspView Project&nbsp;&bullet;&nbsp;
+                      View Project&nbsp;&nbsp;&nbsp;&bullet;&nbsp;&nbsp;&nbspView Project&nbsp;&nbsp;&nbsp;&bullet;&nbsp;&nbsp&nbsp;
                       </textPath>
                   </text>
               </svg>

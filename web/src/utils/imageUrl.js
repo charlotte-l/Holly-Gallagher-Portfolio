@@ -1,9 +1,10 @@
-const imageUrl = require('@sanity/image-url')
+const imageUrlBuilder = require('@sanity/image-url')
 const sanityClient = require('./sanityClient')
 
-// Learn more: https://www.sanity.io/docs/asset-pipeline/image-urls
+const builder = imageUrlBuilder(sanityClient.config())
+
 function urlFor(source) {
-  return imageUrl(sanityClient).image(source)
+  return builder.image(source)
 }
 
 module.exports = urlFor

@@ -14,9 +14,18 @@ function generateCategory(category) {
     };
   });
 
+  let formattedProjects = category.projects.map((project) => {
+    return {
+      ...project,
+      excerpt: BlocksToMarkdown(project.excerpt, { serializers, ...client.config() }),
+      body: BlocksToMarkdown(project.body, { serializers, ...client.config() }),
+    };
+  });
+
   return {
     ...category,
     posts: formattedPosts,
+    projects: formattedProjects,
   };
 }
 

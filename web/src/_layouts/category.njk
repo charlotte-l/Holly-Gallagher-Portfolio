@@ -3,16 +3,39 @@ layout: base.njk
 templateClass: 
 ---
 
-{% set heading = category.title %}
+{% set type = '' %}
+{% set heading = '' %}
+
+{% if category.posts.length > 0 %}
+  {% set type = "post" %}
+{% else %}
+  {% set type = "project" %}
+{% endif %}
+
+{% if type == "post" %}
+  {% set heading = category.title %}
+{% else %}
+  {% set heading = "Projects" %}
+{% endif %}
+
 {% include "../_includes/header.njk" %}
 
 <div class="container max-w-5xl my-24">
+  {% if type == "project" %}
+    <h2 class="w-fit mx-auto mb-24 diamonds bar bar--short">{{ category.title }}<span class="dot"></span></h2>
+  {% endif %}
+
   {% if category.description %}
     <div class="mb-24">
       {{ category.description | markdownify | safe }}
     </div>
   {% endif %}
 
-  {% set postslist = category.posts %}
-  {% include "postslist-archive.njk" %}
+  {% if type == "post" %}
+    {% set postslist = category.posts %}
+    {% include "postslist-archive.njk" %}
+  {% else %}
+      {% set projectslist = category.projects %}
+      {% include "projectslist-archive.njk" %}
+  {% endif %}
 </div>

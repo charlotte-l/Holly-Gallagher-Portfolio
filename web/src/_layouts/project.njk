@@ -19,7 +19,7 @@ templateClass: mb-10
   {% if project.credits or project.description %}
   <div class="container mt-16">
     <div class="flex gap-10">
-      <div class="basis-1/5">
+      <div class="project-credits basis-1/5">
         {{ project.credits | markdownify | safe }}
       </div>
       <div class="basis-4/5">
