@@ -7,7 +7,7 @@
       </div>
       {% if currentPost.mainImage.asset %}
       <a class="w-full stretched bg-brand-primary" href="/updates/{{ currentPost.slug.current }}">
-        <img class="w-full outline outline-brand-primary outline-[1rem] -outline-offset-[1rem]" src="{% croppedUrlFor currentPost.mainImage, 400, 300 %}" alt="{{ currentPost.mainImage.alt }}">
+        <img class="w-full outline outline-brand-primary outline-[1rem] -outline-offset-[1rem]" src="{% croppedUrlFor currentPost.mainImage, 452, 339 %}" alt="{{ currentPost.mainImage.alt }}">
       </a>
       {% endif %}
       <div class="w-full bg-brand-primary text-brand-text pb-8 px-2 flex-grow {% if not currentPost.mainImage.asset %}flex flex-col justify-center{% endif %}">
