@@ -23,7 +23,7 @@ templateClass:
 <div class="container my-24">
   <h2 class="w-fit mx-auto mb-24 diamonds bar bar--short">Featured Work<span class="dot"></span></h2>
 
-  {% set projectslist = collections.allProjects | limit(4) %}
+  {% set projectslist = collections.allProjects | limit(3) %}
   {% include "projectslist.njk" %}
 
   <div class="text-center mt-8">
