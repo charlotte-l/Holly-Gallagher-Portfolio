@@ -26,7 +26,7 @@ export default defineConfig({
                 apiId: '5fd09942-0cb5-43bb-84f6-bbf20b89f70d',
                 buildHookId: '61f2845f4a49e2b11453747d',
                 name: 'holly-gallagher-portfolio',
-                url: 'https://holly-gallagher-portfolio.netlify.app',
+                url: 'https://hollygallagher.netlify.app',
               },
             ],
         })

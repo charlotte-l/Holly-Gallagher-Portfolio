@@ -44,7 +44,7 @@ export default {
             value: 'https://github.com/charlotte-l/Holly-Gallagher-Portfolio',
             category: 'Code'
           },
-          {title: 'Frontend', value: 'https://holly-gallagher-portfolio.netlify.app', category: 'apps'}
+          {title: 'Frontend', value: 'https://hollygallagher.netlify.app', category: 'apps'}
         ]
       }
     },

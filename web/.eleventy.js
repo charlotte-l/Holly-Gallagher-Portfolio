@@ -36,7 +36,7 @@ module.exports = function (eleventyConfig) {
   };
 
   let markdownItLinkAttributesOpts = process.env.ELEVENTY_ENV === "production" ? {
-    pattern: /^(?!(https:\/\/holly-gallagher-portfolio\.com|#)).*$/gm,
+    pattern: /^(?!(https:\/\/hollygallagher\.netlify\.app|#)).*$/gm,
     attrs: {
       target: '_blank',
       rel: 'noopener noreferrer',
