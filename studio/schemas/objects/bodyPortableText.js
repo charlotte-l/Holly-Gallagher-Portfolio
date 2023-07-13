@@ -41,6 +41,17 @@ export default {
             name: 'color',
             title: 'Color',
             type: 'color'
+          },
+          {
+            name: 'assetReference',
+            type: 'object',
+            title: 'File Reference',
+            description: 'Link pieces of text to a previously uploaded file.',
+            fields: [{ 
+              name: 'file', 
+              type: 'file', 
+              title: 'File Attachment'
+            }]
           }
         ]
       }

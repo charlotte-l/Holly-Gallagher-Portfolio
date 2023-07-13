@@ -4,6 +4,7 @@ const util = require("util");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const markdownItLinkAttributes = require("markdown-it-link-attributes");
+const markdownItAttrs = require("markdown-it-attrs");
 const pluginCSS = require("eleventy-postcss-extension");
 const urlFor = require("./src/utils/imageUrl");
 const filters = require("./src/utils/filters");
@@ -76,7 +77,7 @@ module.exports = function (eleventyConfig) {
   });
 
   eleventyConfig.addFilter("markdownify", (value) => {
-    const md = new markdownIt(options).use(markdownItLinkAttributes, markdownItLinkAttributesOpts);
+    const md = new markdownIt(options).use(markdownItLinkAttributes, markdownItLinkAttributesOpts).use(markdownItAttrs).disable("code");
     return md.render(value);
   });
 

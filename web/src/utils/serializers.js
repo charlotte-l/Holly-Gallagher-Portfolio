@@ -1,6 +1,7 @@
 const imageUrl = require("./imageUrl");
 const BlocksToMarkdown = require("@sanity/block-content-to-markdown");
 const client = require("../utils/sanityClient");
+const config = client.config();
 
 // Learn more on https://www.sanity.io/guides/introduction-to-portable-text
 const serializers = {
@@ -24,7 +25,11 @@ const serializers = {
     textAlign: ({ node }) => `<div style="text-align: ${node.alignment}">${BlocksToMarkdown(node.text, { serializers, ...client.config() })}</div>`,
   },
   marks: {
-    color: (props) => `<span style="color: ${props.mark.hex}">${props.children}</span>`
+    color: (props) => `<span style="color: ${props.mark.hex}">${props.children}</span>`,
+    assetReference: (props) => {
+      const [_file, id, extension] = props.mark.file.asset._ref.split('-');
+      return `[${props.children}](https://cdn.sanity.io/files/${config.projectId}/${config.dataset}/${id}.${extension}){target="_blank"}`;
+    },
   }
 };
 
