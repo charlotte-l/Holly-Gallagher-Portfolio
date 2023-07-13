@@ -507,6 +507,29 @@
     will-change: opacity;
   }
 
+  .basicLightbox::after {
+    content: "";
+    position: absolute;
+    top: 1.8rem;
+    right: 1.8rem;
+    width: 2em;
+    height: 2em;
+    background: url(/images/close.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  .basicLightbox img {
+    max-height: 75%;
+  }
+
+  @media (min-width: 1280px) {
+    .basicLightbox img {
+      max-width: 75%;
+      max-height: unset;
+    }
+  }
+
   .basicLightbox--visible {
     opacity: 1;
   }
