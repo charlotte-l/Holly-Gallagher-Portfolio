@@ -174,8 +174,19 @@
     white-space: nowrap;
   }
 
-  .align:first-line {
+  .align-center:first-line,
+  .align-left:first-line,
+  .align-right:first-line {
     font-size: 0;
+  }
+
+  .align-center {
+    text-align: center;
+  }
+  
+  .align-center img,
+  .align-center iframe {
+    margin: 2.5rem auto;
   }
 
   @media (prefers-reduced-motion: no-preference) {
