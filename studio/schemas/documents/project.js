@@ -25,6 +25,13 @@ export default {
       title: 'Main image'
     },
     {
+      title: 'Featured project slot (LTR)',
+      description: 'Slot to use on Featured Projects page - 1, 2 or 3. Must be unique across all projects',
+      name: 'featuredOrder',
+      type: 'number',
+      validation: Rule => Rule.min(1).max(3).integer()
+    },
+    {
       name: 'excerpt',
       type: 'excerptPortableText',
       title: 'Excerpt',

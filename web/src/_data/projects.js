@@ -22,6 +22,7 @@ async function getProjects() {
     _id,
     title,
     slug,
+    featuredOrder,
     excerpt,
     mainImage,
     credits,

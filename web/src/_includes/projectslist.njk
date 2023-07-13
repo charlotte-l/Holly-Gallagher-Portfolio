@@ -1,5 +1,5 @@
 <div class="flex flex-col xl:flex-row w-fit mx-auto justify-evenly gap-24 pb-32">
-  {% for project in projectslist %}
+  {% for project in projectslist | sort(false, false, 'data.project.featuredOrder') %}
     {% set currentProject = project.data.project %}
     <div class="relative flex justify-center">
       {% if loop.index == 1 %}
